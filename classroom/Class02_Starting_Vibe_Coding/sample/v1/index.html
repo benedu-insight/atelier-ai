@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Equipment Checklist</title>
+<style>
+  
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:-apple-system, 'Segoe UI', 'Malgun Gothic', sans-serif; min-height:100vh;
+    background:linear-gradient(135deg,#312e81 0%,#7c3aed 50%,#db2777 100%); color:#fff; padding:40px 16px 90px; }
+  .wrap{ max-width:760px; margin:0 auto; }
+  h1{ font-size:34px; font-weight:800; text-align:center; }
+  .sub{ text-align:center; opacity:.8; margin:8px 0 28px; }
+  .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:24px; }
+  .stat{ background:rgba(255,255,255,.14); backdrop-filter:blur(10px); border-radius:18px; padding:16px; text-align:center; }
+  .stat b{ display:block; font-size:26px; }
+  .stat span{ font-size:13px; opacity:.8; }
+  .card{ background:rgba(255,255,255,.12); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.2); border-radius:20px; padding:18px 20px; margin-bottom:14px; }
+  .card h3{ font-size:18px; margin-bottom:10px; }
+  label{ display:flex; align-items:center; gap:10px; padding:6px 0; font-size:15px; cursor:pointer; }
+  input[type=checkbox]{ width:18px; height:18px; accent-color:#f472b6; }
+  .btn{ display:block; width:100%; margin-top:18px; padding:16px; border:0; border-radius:16px; font-size:17px; font-weight:700; color:#fff; cursor:pointer;
+    background:linear-gradient(90deg,#ec4899,#8b5cf6); box-shadow:0 10px 30px rgba(236,72,153,.4); }
+  .toast{ position:fixed; left:50%; bottom:90px; transform:translateX(-50%); background:#111; padding:12px 20px; border-radius:12px; display:none; }
+  
+  .repro{ position:fixed; left:12px; bottom:12px; font:600 12px/1 monospace; background:#0A1A1A; color:#F5F0E0; padding:8px 12px; border-radius:999px; }
+  .note-btn{ position:fixed; right:12px; bottom:12px; font:700 13px/1 sans-serif; background:#FF4D8B; color:#0A0A0A; border:0; padding:10px 16px; border-radius:999px; cursor:pointer; z-index:20; }
+  .pin{ display:none; position:absolute; z-index:10; background:#FFFAF0; color:#0A0A0A; font:600 12.5px/1.45 'Malgun Gothic', sans-serif; padding:8px 10px; border-radius:10px; border:2px solid #FF4D8B; max-width:250px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  .pin b{ color:#D6336C; }
+  body.notes .pin{ display:block; }
+  .rel{ position:relative; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="rel">
+    <h1>🏭 Smart Equipment Checklist ✨</h1>
+    <p class="sub">Empowering Your Factory with Excellence 🚀</p>
+    <div class="pin" style="right:-10px; top:-30px;"><b>① AI 기본값</b> 남색→보라→핑크 그라디언트, 이모지, 어느 회사에나 붙는 영어 슬로건</div>
+  </div>
+
+  <div class="stats rel">
+    <div class="stat"><b>98.7%</b><span>설비 가동률</span></div>
+    <div class="stat"><b>1,250+</b><span>누적 점검</span></div>
+    <div class="stat"><b>0건</b><span>이번 달 고장</span></div>
+    <div class="pin" style="left:20px; top:70px;"><b>② 지어낸 숫자</b> 가동률·누적 점검 수는 어디서도 온 값이 아님</div>
+  </div>
+
+  <div class="card rel">
+    <h3>⚙️ CNC 머신 #1</h3>
+    <label><input type="checkbox"> 오일 레벨 확인</label>
+    <label><input type="checkbox"> 이상 소음 확인</label>
+    <label><input type="checkbox"> 청소 상태 확인</label>
+    <div class="pin" style="right:10px; top:10px;"><b>③ 우리 설비가 아님</b> 우리 공장에 없는 설비와 점검 항목을 지어냄</div>
+  </div>
+  <div class="card">
+    <h3>🤖 로봇 암 A</h3>
+    <label><input type="checkbox"> 그리퍼 동작 확인</label>
+    <label><input type="checkbox"> 비상정지 버튼 확인</label>
+  </div>
+  <div class="card rel">
+    <h3>🔥 용접기 B</h3>
+    <label><input type="checkbox"> 케이블 손상 확인</label>
+    <label><input type="checkbox"> 가스 압력 확인</label>
+    <div class="pin" style="right:10px; top:10px;"><b>④ 기록이 안 됨</b> 점검자·날짜가 없고, 이상(NG)을 적을 칸이 없음. 체크 = OK뿐</div>
+  </div>
+
+  <div class="rel">
+    <button class="btn" onclick="var t=document.getElementById('t');t.style.display='block';setTimeout(function(){t.style.display='none'},1500)">✅ 점검 완료 제출</button>
+    <div class="pin" style="left:10px; top:-46px;"><b>⑤ 어디에도 저장 안 됨</b> "제출"을 눌러도 메시지만 뜨고, 새로고침하면 다 사라짐</div>
+  </div>
+</div>
+<div class="toast" id="t">🎉 제출 완료! 훌륭해요!</div>
+
+<div class="repro">강의용 재현본 · V1 한 줄 요청</div>
+<button class="note-btn" onclick="document.body.classList.toggle('notes'); this.textContent=document.body.classList.contains('notes')?'문제점 숨기기':'문제점 보기'">문제점 보기</button>
+<script>if(/[?&]notes/.test(location.search)){document.body.classList.add('notes');document.querySelector('.note-btn').textContent='문제점 숨기기';}</script>
+</body>
+</html>

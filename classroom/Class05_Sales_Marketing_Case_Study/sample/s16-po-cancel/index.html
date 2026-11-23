@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PO 취소 요청 회신 · 보상 제안서 Rev.3 · Novion (강의용 재현본)</title>
+<link rel="icon" href="../common/novion_symbol.svg">
+<link rel="stylesheet" href="../common/novion.css">
+<style>
+.doc h1{font-family:var(--font-display);font-weight:800;font-size:22pt;line-height:1.2;letter-spacing:-.5px;margin:9mm 0 2mm}
+.doc h2{font-size:12.5pt;font-weight:700;margin:8mm 0 3mm}
+.doc p{margin:0 0 3mm;line-height:1.65;color:var(--ink-secondary)}
+.doc .table th{font-size:8pt;height:30px;padding:0 6px}
+.doc .table td{font-size:9pt;height:30px;padding:0 6px}
+.revs{display:flex;gap:6px;margin-top:2mm}
+.revs span{font-size:8.5pt;border:1px solid var(--hairline);border-radius:999px;padding:2px 9px;color:var(--ink-mute)}
+.revs span.on{border-color:var(--primary);color:var(--primary-deep);font-weight:600}
+.total td{font-weight:700;color:var(--ink)!important;background:var(--canvas-soft)}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:10mm}
+.sign div{border:1px solid var(--hairline);border-radius:8px;padding:4mm 5mm;font-size:9pt;color:var(--ink-mute);height:24mm}
+.doc{box-shadow:0 12px 32px -12px rgba(0,0,0,.18)}
+.repro{position:fixed;left:14px;bottom:14px;z-index:9;background:#0D253D;color:#fff;font:500 12px/1 var(--font);padding:8px 12px;border-radius:999px;opacity:.85}
+</style>
+</head>
+<body>
+<span class="repro">강의용 재현본 · 가상 회사·수치</span>
+<div class="doc-page"><article class="doc">
+  <header class="doc-header"><img src="../common/novion_logo_horizontal.svg" alt="Novion"><div class="no">NV-SL-2606-031 · Rev.3<br>2026. 06. 12</div></header>
+  <div class="revs"><span>Rev.0 · 04-24 초안</span><span>Rev.1 · 05-08 한·영 분리</span><span>Rev.2 · 05-27 보상 범위 조정</span><span class="on">Rev.3 · 06-12 협상 반영</span></div>
+  <h1>PO 취소 요청 회신 —<br>취소 불가 항목과 취소 비용 보상 제안</h1>
+  <p>수신: Veltra Systems 구매팀 · 발신: Novion 영업 1팀</p>
+
+  <h2>1. 개요</h2>
+  <p>납기가 여러 차례 연기된 발주 건에 대해 Veltra Systems로부터 PO 취소 요청을 받았습니다. 각 PO의 진행 상태를 확인해 취소 가능 여부를 나누고, 이미 확보한 모델 전용 부품에 대한 취소 비용 보상을 아래와 같이 제안합니다.</p>
+
+  <h2>2. PO 진행 상태</h2>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>PO</th><th>발행일</th><th>모델</th><th class="num">수량</th><th>상태</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>7100-2214</td><td>2025-02-11</td><td>NX Pro 40 Duo</td><td class="num">6</td><td><span class="badge warning">보류</span></td><td>부품 확보</td></tr>
+      <tr><td>7100-2398</td><td>2025-06-30</td><td>NX Lite 12 Duo</td><td class="num">4</td><td><span class="badge warning">보류</span></td><td>부품 확보</td></tr>
+      <tr><td>7100-2655</td><td>2025-09-04</td><td>NX Lite 12</td><td class="num">2</td><td><span class="badge success">출하 대기</span></td><td>완제품</td></tr>
+      <tr><td>7100-2655</td><td>2025-09-04</td><td>NX Core 20 G</td><td class="num">2</td><td><span class="badge success">출하 대기</span></td><td>완제품</td></tr>
+      <tr><td>7100-2701</td><td>2025-09-17</td><td>NX Pro 40 Duo</td><td class="num">16</td><td><span class="badge warning">보류</span></td><td>부품 확보</td></tr>
+      <tr><td>7100-2733</td><td>2025-09-22</td><td>NX Lite 12 Duo</td><td class="num">22</td><td><span class="badge warning">보류</span></td><td>부품 확보</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>3. 취소 불가 항목 (완제품)</h2>
+  <p>PO 7100-2655의 두 모델 4대는 이미 완제품으로 생산이 끝나 취소할 수 없습니다. 전량 인수를 요청드립니다.</p>
+
+  <h2>4. 취소 비용 보상 제안</h2>
+  <p>부품만 확보한 보류 PO의 경우, 해당 모델 전용으로 구매한 부품은 다른 모델에 쓸 수 없습니다. 모델별 전용 부품 금액을 보상 기준으로 제안합니다. 세부 부품 목록은 별첨 엑셀.</p>
+  <div class="table-wrap"><table class="table">
+    <thead><tr><th>구분</th><th>모델</th><th class="num">수량</th><th class="num">보상 금액 (원)</th></tr></thead>
+    <tbody>
+      <tr><td>완제품 인수</td><td>NX Lite 12 · NX Core 20 G</td><td class="num">4</td><td class="num">계약 단가 × 4대</td></tr>
+      <tr><td>전용 부품 보상</td><td>NX Lite 12 Duo</td><td class="num">26</td><td class="num">58,240,000</td></tr>
+      <tr><td>전용 부품 보상</td><td>NX Pro 40 Duo</td><td class="num">22</td><td class="num">10,700,000</td></tr>
+      <tr class="total"><td colspan="3">전용 부품 보상 합계</td><td class="num">68,940,000</td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-top:4mm">Rev.3 변경: 다른 모델과 같이 쓸 수 있는 공용 부품 9종은 보상 대상에서 뺐습니다(협상 2차 회의 결과).</p>
+
+  <div class="sign"><div>Novion 영업 1팀</div><div>Veltra Systems 구매팀 확인</div></div>
+</article></div>
+</body>
+</html>

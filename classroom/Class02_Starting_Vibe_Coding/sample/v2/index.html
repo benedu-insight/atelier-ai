@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>설비 일상점검 — HKT (주)한결테크</title>
+<link rel="icon" href="assets/hkt_symbol.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  
+  :root{
+    --primary:#1F4E9C; --deep:#153B78; --night:#0F2C5C; --pale:#EAF1FC; --pale2:#F4F8FE;
+    --ink:#0B1220; --steel:#5B6472; --steel-soft:#8A93A3; --hair:#E2E8F3; --hair2:#CBD8ED;
+    --amber:#C98A2B; --good:#1F8A5F; --risk:#C1443C; --surface:#F6F9FD;
+    --font:'Google Sans','Gowun Batang',sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:var(--font); color:var(--ink); background:#fff; word-break:keep-all; padding-bottom:80px; }
+  header{ background:var(--deep); color:#fff; }
+  .bar{ max-width:880px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .bar img{ height:30px; background:#fff; border-radius:6px; padding:3px 6px; }
+  .bar span{ font-size:14px; color:#C9D6EC; }
+  main{ max-width:880px; margin:0 auto; padding:24px 16px; }
+  h1{ font-size:26px; font-weight:700; }
+  .lead{ color:var(--steel); margin:6px 0 20px; font-size:15px; }
+  .meta{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:14px 16px; }
+  .meta label{ font-size:12.5px; color:var(--steel); display:block; margin-bottom:4px; }
+  .meta input, .meta select{ width:100%; font:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--hair2); border-radius:8px; background:#fff; color:var(--ink); }
+  .progress{ margin:18px 0 6px; display:flex; justify-content:space-between; font-size:14px; color:var(--steel); }
+  .track{ height:8px; background:var(--pale); border-radius:99px; overflow:hidden; }
+  .track i{ display:block; height:100%; width:0; background:var(--primary); transition:width .25s; }
+  .eq{ margin-top:22px; }
+  .eq h2{ font-size:17px; font-weight:700; display:flex; gap:10px; align-items:baseline; padding-bottom:8px; border-bottom:2px solid var(--primary); }
+  .eq h2 code{ font-family:'Google Sans',monospace; font-size:13px; color:var(--primary); }
+  .row{ display:grid; grid-template-columns:1fr auto; gap:8px 16px; align-items:center; padding:12px 0; border-bottom:1px solid var(--hair); }
+  .row .q{ font-size:15px; }
+  .row .q small{ display:block; color:var(--steel); font-size:12.5px; margin-top:2px; }
+  .seg{ display:flex; gap:6px; }
+  .seg button{ font:700 14px/1 var(--font); padding:9px 14px; border-radius:99px; border:1.5px solid var(--hair2); background:#fff; color:var(--steel); cursor:pointer; min-width:56px; }
+  .seg button.on.ok{ background:var(--good); border-color:var(--good); color:#fff; }
+  .seg button.on.ng{ background:var(--risk); border-color:var(--risk); color:#fff; }
+  .num{ display:flex; align-items:center; gap:8px; }
+  .num input{ width:96px; font:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--hair2); border-radius:8px; text-align:right; }
+  .num .j{ font-weight:700; font-size:14px; min-width:30px; }
+  .j.ok{ color:var(--good); } .j.ng{ color:var(--risk); }
+  .memo{ grid-column:1 / -1; display:none; }
+  .memo.show{ display:block; }
+  .memo textarea{ width:100%; font:inherit; font-size:14px; padding:8px 10px; border:1.5px solid var(--risk); border-radius:8px; min-height:56px; }
+  .memo .hint{ font-size:12.5px; color:var(--risk); margin-bottom:4px; }
+  .actions{ margin-top:26px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+  .btn{ font:700 15px/1 var(--font); padding:13px 20px; border-radius:99px; border:0; background:var(--primary); color:#fff; cursor:pointer; }
+  .btn:disabled{ background:var(--hair2); color:var(--steel); cursor:not-allowed; }
+  .btn.line{ background:#fff; color:var(--primary); border:1.5px solid var(--primary); }
+  .msg{ font-size:14px; color:var(--steel); }
+  table{ width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; }
+  th{ background:var(--primary); color:#fff; text-align:left; padding:8px 10px; font-weight:700; }
+  td{ padding:8px 10px; border-bottom:1px solid var(--hair); vertical-align:top; }
+  tr:nth-child(even) td{ background:var(--surface); }
+  .ngc{ color:var(--risk); font-weight:700; } .okc{ color:var(--good); font-weight:700; }
+  .hist{ margin-top:40px; }
+  .hist h2{ font-size:18px; }
+  .hist p{ font-size:13.5px; color:var(--steel); margin-top:4px; }
+  @media (max-width:640px){ .meta{ grid-template-columns:1fr; } .row{ grid-template-columns:1fr; } }
+
+  
+  .repro{ position:fixed; left:12px; bottom:12px; font:600 12px/1 monospace; background:#0A1A1A; color:#F5F0E0; padding:8px 12px; border-radius:999px; z-index:20; }
+  .note-btn{ position:fixed; right:12px; bottom:12px; font:700 13px/1 sans-serif; background:#FF4D8B; color:#0A0A0A; border:0; padding:10px 16px; border-radius:999px; cursor:pointer; z-index:20; }
+  .pin{ display:none; position:absolute; z-index:10; background:#FFFAF0; color:#0A0A0A; font:600 12.5px/1.45 'Malgun Gothic', sans-serif; padding:8px 10px; border-radius:10px; border:2px solid #FF4D8B; max-width:260px; box-shadow:0 6px 20px rgba(0,0,0,.18); }
+  .pin b{ color:#B0245A; }
+  body.notes .pin{ display:block; }
+  .rel{ position:relative; }
+</style>
+</head>
+<body>
+<header><div class="bar"><img src="assets/hkt_logo_horizontal.svg" alt="HKT (주)한결테크"><span>CM 1라인 · 설비 일상점검</span></div></header>
+<main>
+  <div class="rel">
+    <h1>설비 일상점검표</h1>
+    <p class="lead">작업 시작 전 점검합니다. 모든 항목을 입력해야 저장할 수 있고, NG 항목은 조치 메모가 필요합니다.</p>
+    <div class="pin" style="right:0; top:-6px;"><b>① 재료를 줬더니</b> 첨부한 HKT 로고·DESIGN.md 그대로. 지어낸 숫자·슬로건이 없음</div>
+  </div>
+
+  <div class="meta rel">
+    <div><label for="date">점검일</label><input type="date" id="date"></div>
+    <div><label for="who">점검자</label><select id="who"><option value="">선택</option><option>김도현</option><option>이서연</option><option>박준호</option></select></div>
+    <div><label for="shift">근무조</label><select id="shift"><option>주간</option><option>야간</option></select></div>
+    <div class="pin" style="left:30%; top:66px;"><b>② 기록의 기본</b> 날짜·점검자·근무조. v1에는 없던 칸</div>
+  </div>
+
+  <div class="progress"><span id="pText">0 / 0 항목</span><span id="ngText"></span></div>
+  <div class="track"><i id="pBar"></i></div>
+
+  <div id="list"></div>
+
+  <div class="actions rel">
+    <button class="btn" id="save" disabled>저장</button>
+    <button class="btn line" id="csv">CSV 내려받기</button>
+    <span class="msg" id="msg"></span>
+    <div class="pin" style="left:0; top:56px;"><b>④ 아직 남은 문제</b> 저장은 <u>이 PC의 브라우저</u>에만 됩니다. 반장님 PC에서는 안 보임 → v3에서 Supabase로</div>
+  </div>
+
+  <section class="hist">
+    <h2>저장된 점검 기록</h2>
+    <p id="where">이 브라우저에 저장된 기록입니다.</p>
+    <table><thead><tr><th>점검일</th><th>근무조</th><th>점검자</th><th>결과</th><th>NG 내용</th></tr></thead><tbody id="rows"></tbody></table>
+  </section>
+</main>
+
+<div class="repro">강의용 재현본 · V2 4요소 요청</div>
+<button class="note-btn" id="noteBtn">검토 포인트 보기</button>
+
+<script>
+/* 점검 항목: 요청에 첨부한 "HKT CM 1라인 일상점검표(가상)"에서 옮김 */
+var EQUIP = [
+  { id:'SS-02', name:'납땜 스테이션', items:[
+    { k:'ss1', q:'팁 온도', type:'num', min:340, max:360, unit:'℃', note:'기준 350 ± 10 ℃' },
+    { k:'ss2', q:'팁 산화·오염 없음', type:'ok' },
+    { k:'ss3', q:'정전기 접지선 연결', type:'ok' } ]},
+  { id:'TD-03', name:'전동 토크 드라이버', items:[
+    { k:'td1', q:'토크 체커 측정값', type:'num', min:0.54, max:0.66, unit:'N·m', note:'기준 0.6 N·m ± 10 %' },
+    { k:'td2', q:'비트 마모·변형 없음', type:'ok' } ]},
+  { id:'HP-01', name:'내전압 시험기', items:[
+    { k:'hp1', q:'기준 시료로 FAIL 판정 확인', type:'ok', note:'불량 시료를 걸었을 때 FAIL이 떠야 정상' },
+    { k:'hp2', q:'리드선 피복 손상 없음', type:'ok' } ]},
+  { id:'TJ-01', name:'RF 출력 테스트 지그', items:[
+    { k:'tj1', q:'더미로드 연결부 체결', type:'ok' },
+    { k:'tj2', q:'파워미터 영점 확인', type:'ok' } ]},
+  { id:'CH-01', name:'항온항습 체임버', items:[
+    { k:'ch1', q:'표시 온도', type:'num', min:23, max:27, unit:'℃', note:'기준 25 ± 2 ℃' } ]}
+];
+
+/* ---------- 저장소: V2는 이 브라우저(localStorage)에만 ---------- */
+var KEY = 'hkt-daily-check-v2';
+var Store = {
+  label: '이 브라우저에 저장된 기록입니다. 다른 PC에서는 보이지 않습니다.',
+  list: function(){ try { return Promise.resolve(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch(e){ return Promise.resolve([]); } },
+  add: function(rec){ return Store.list().then(function(all){ all.unshift(rec); try { localStorage.setItem(KEY, JSON.stringify(all.slice(0,200))); } catch(e){} }); }
+};
+
+/* ---------- 화면 ---------- */
+var state = {}, $ = function(id){ return document.getElementById(id); };
+var ALL = []; EQUIP.forEach(function(e){ e.items.forEach(function(it){ it.eq = e; ALL.push(it); }); });
+$('date').value = new Date().toISOString().slice(0,10);
+
+function judge(it, v){
+  if (v === '' || v == null || isNaN(+v)) return null;
+  v = +v; return (v >= it.min && v <= it.max) ? 'OK' : 'NG';   // 경계값(0.54, 0.66)은 OK
+}
+function render(){
+  var html = '';
+  EQUIP.forEach(function(e, ei){
+    html += '<div class="eq' + (ei===1 ? ' rel' : '') + '"><h2><code>' + e.id + '</code>' + e.name + '</h2>';
+    e.items.forEach(function(it){
+      html += '<div class="row" data-k="' + it.k + '"><div class="q">' + it.q + (it.note ? '<small>' + it.note + '</small>' : '') + '</div>';
+      if (it.type === 'num') html += '<div class="num"><input type="number" step="any" inputmode="decimal" aria-label="' + it.q + '"> <span>' + it.unit + '</span><span class="j"></span></div>';
+      else html += '<div class="seg"><button type="button" class="ok">OK</button><button type="button" class="ng">NG</button></div>';
+      html += '<div class="memo"><div class="hint">NG 조치 내용을 적어 주세요 (필수)</div><textarea aria-label="NG 조치 메모"></textarea></div></div>';
+    });
+    if (ei === 1) html += '<div class="pin" style="right:0; top:40px;"><b>③ 검산할 곳</b> 0.54와 0.66을 넣어 보세요. 경계값이 OK로 나오는지, 0.53은 NG인지 직접 확인</div>';
+    html += '</div>';
+  });
+  $('list').innerHTML = html;
+  document.querySelectorAll('.row').forEach(function(row){
+    var k = row.dataset.k, it = ALL.filter(function(x){ return x.k === k; })[0];
+    var memo = row.querySelector('.memo'), ta = memo.querySelector('textarea');
+    function set(res, val){ state[k] = { res:res, val:val, memo:ta.value }; memo.classList.toggle('show', res === 'NG'); update(); }
+    if (it.type === 'num'){
+      var inp = row.querySelector('input'), j = row.querySelector('.j');
+      inp.addEventListener('input', function(){ var r = judge(it, inp.value); j.textContent = r || ''; j.className = 'j ' + (r ? r.toLowerCase() : ''); set(r, inp.value); });
+    } else {
+      row.querySelectorAll('.seg button').forEach(function(b){
+        b.addEventListener('click', function(){ row.querySelectorAll('.seg button').forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on'); set(b.textContent, ''); });
+      });
+    }
+    ta.addEventListener('input', function(){ if (state[k]) state[k].memo = ta.value; update(); });
+  });
+}
+function update(){
+  var done = 0, ng = 0, memoMissing = 0;
+  ALL.forEach(function(it){ var s = state[it.k]; if (s && s.res){ done++; if (s.res === 'NG'){ ng++; if (!s.memo.trim()) memoMissing++; } } });
+  $('pText').textContent = done + ' / ' + ALL.length + ' 항목';
+  $('ngText').innerHTML = ng ? '<span class="ngc">NG ' + ng + '건</span>' : '';
+  $('pBar').style.width = (done / ALL.length * 100) + '%';
+  var ready = done === ALL.length && !memoMissing && $('who').value;
+  $('save').disabled = !ready;
+  $('msg').textContent = ready ? '' : (!$('who').value ? '점검자를 선택하세요.' : memoMissing ? 'NG 메모 ' + memoMissing + '건이 비어 있습니다.' : '');
+}
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function showRows(){
+  $('where').textContent = Store.label;
+  Store.list().then(function(all){
+    $('rows').innerHTML = all.length ? all.map(function(r){
+      var ngs = r.items.filter(function(i){ return i.res === 'NG'; });
+      return '<tr><td>' + esc(r.date) + '</td><td>' + esc(r.shift) + '</td><td>' + esc(r.who) + '</td><td class="' + (ngs.length ? 'ngc">NG ' + ngs.length : 'okc">이상 없음') + '</td><td>' +
+        ngs.map(function(i){ return esc(i.eq + ' ' + i.q + (i.val ? ' (' + i.val + ')' : '') + ': ' + i.memo); }).join('<br>') + '</td></tr>';
+    }).join('') : '<tr><td colspan="5">아직 기록이 없습니다.</td></tr>';
+  });
+}
+$('who').addEventListener('change', update);
+$('save').addEventListener('click', function(){
+  var rec = { date:$('date').value, shift:$('shift').value, who:$('who').value, saved_at:new Date().toISOString(),
+    items: ALL.map(function(it){ var s = state[it.k]; return { eq:it.eq.id, q:it.q, res:s.res, val:s.val || '', memo:s.memo || '' }; }) };
+  $('save').disabled = true; $('msg').textContent = '저장 중…';
+  Store.add(rec).then(function(){ $('msg').textContent = '저장했습니다.'; state = {}; render(); update(); showRows(); },
+    function(err){ $('msg').textContent = '저장 실패: ' + (err && err.message || err); update(); });
+});
+$('csv').addEventListener('click', function(){
+  Store.list().then(function(all){
+    var lines = [['점검일','근무조','점검자','설비','항목','결과','측정값','메모']];
+    all.forEach(function(r){ r.items.forEach(function(i){ lines.push([r.date, r.shift, r.who, i.eq, i.q, i.res, i.val, i.memo]); }); });
+    var csv = '﻿' + lines.map(function(l){ return l.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(','); }).join('\r\n');
+    var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type:'text/csv' })); a.download = 'hkt-daily-check.csv'; a.click();
+  });
+});
+render(); update(); showRows();
+
+$('noteBtn').addEventListener('click', function(){ document.body.classList.toggle('notes'); this.textContent = document.body.classList.contains('notes') ? '검토 포인트 숨기기' : '검토 포인트 보기'; });
+if (/[?&]notes/.test(location.search)) $('noteBtn').click();
+</script>
+</body>
+</html>

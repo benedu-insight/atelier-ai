@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이서연 업무 도구 3종</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+
+:root{--ink:#1F2328;--sub:#5F6670;--canvas:#FFFFFF;--paper:#F7F6F3;--line:#E4E2DC;--accent:#2F6F63;--accent-soft:#E3EFEC;--ok:#2F6F63;--ng:#B42318;--ng-soft:#FDECEA;--r:8px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 15px/1.6 Pretendard,"Malgun Gothic",sans-serif;word-break:keep-all}
+.page{max-width:960px;margin:0 auto;padding:24px 16px 48px;display:flex;flex-direction:column;gap:40px}
+.tool{display:flex;flex-direction:column;gap:20px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px}
+.head h1{margin:0;font-size:22px;font-weight:700}
+.head span{font-size:13px;color:var(--sub)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.num{background:var(--canvas);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.num label{display:block;font-size:13px;font-weight:500;color:var(--sub)}
+.num b{font-size:32px;font-weight:700;font-variant-numeric:tabular-nums}
+.num b small{font-size:15px;font-weight:500;color:var(--sub);margin-left:3px}
+.form{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500;color:var(--sub)}
+input,select{height:40px;border:1px solid var(--line);border-radius:var(--r);padding:0 12px;font:inherit;color:var(--ink);background:var(--canvas);width:150px}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button{height:40px;border-radius:var(--r);padding:0 18px;font:600 15px Pretendard,sans-serif;cursor:pointer;border:1px solid var(--line);background:var(--canvas);color:var(--ink)}
+button.save{background:var(--accent);border-color:var(--accent);color:#fff}
+table{width:100%;border-collapse:collapse;background:var(--canvas);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;font-variant-numeric:tabular-nums}
+th{text-align:left;font-size:13px;font-weight:500;color:var(--sub);padding:10px 12px;border-bottom:1px solid var(--line);background:var(--paper)}
+td{padding:10px 12px;border-bottom:1px solid var(--line)}
+td.n{text-align:right}
+.ok{color:var(--ok);font-weight:600}
+.ng{color:var(--ng);background:var(--ng-soft);font-weight:600;padding:2px 8px;border-radius:var(--r)}
+.note{font-size:13px;color:var(--sub);margin:0}
+@media (max-width:640px){.nums{grid-template-columns:1fr}.form label,input,select{width:100%}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<section class="tool" aria-labelledby="t1">
+  <div class="head"><h1 id="t1">설비 일상점검표</h1><span>2026-11-14 · 품질팀 · 이서연</span></div>
+  <div class="nums"><div class="num"><label>점검 완료</label><b>4<small>/ 5대</small></b></div><div class="num"><label>NG</label><b>1<small>건</small></b></div><div class="num"><label>미점검</label><b>1<small>대</small></b></div></div>
+  <table><tr><th>설비</th><th>항목</th><th class="n">측정</th><th>판정</th></tr>
+    <tr><td>SS-01 납땜기</td><td>팁 온도 350 ± 10 °C</td><td class="n">352</td><td><span class="ok">OK</span></td></tr>
+    <tr><td>SS-02 납땜기</td><td>팁 온도 350 ± 10 °C</td><td class="n">366</td><td><span class="ng">NG</span></td></tr>
+    <tr><td>TQ-01 토크 드라이버</td><td>2.5 ± 0.25 N·m</td><td class="n">2.52</td><td><span class="ok">OK</span></td></tr>
+    <tr><td>IR-01 절연저항계</td><td>교정 기한</td><td class="n">D-41</td><td><span class="ok">OK</span></td></tr>
+  </table>
+</section>
+
+<section class="tool" aria-labelledby="t2">
+  <div class="head"><h1 id="t2">주간 품질 리포트 요약</h1><span>2026년 46주 · 품질팀 · 이서연</span></div>
+  <div class="nums"><div class="num"><label>수입검사 합격률</label><b>96.4<small>%</small></b></div><div class="num"><label>NG Lot</label><b>2<small>건</small></b></div><div class="num"><label>고객 클레임</label><b>0<small>건</small></b></div></div>
+  <table><tr><th>협력사</th><th class="n">입고 Lot</th><th class="n">NG</th><th>주요 내용</th></tr>
+    <tr><td>새빛와이어</td><td class="n">31</td><td class="n">1</td><td>RF Cable 1.2m 길이 초과 <span class="ng">NG</span></td></tr>
+    <tr><td>진성정밀</td><td class="n">18</td><td class="n">1</td><td>DIO 판넬 도장 들뜸 <span class="ng">NG</span></td></tr>
+    <tr><td>누리파츠</td><td class="n">7</td><td class="n">0</td><td><span class="ok">OK</span></td></tr>
+  </table>
+</section>
+
+<section class="tool" aria-labelledby="t3">
+  <div class="head"><h1 id="t3">공차 판정 계산기</h1><span>품질팀 · 이서연</span></div>
+  <form class="form" id="calc" onsubmit="return false">
+    <label>기준값<input id="nom" type="number" step="any" value="1200"></label>
+    <label>공차 ±<input id="tol" type="number" step="any" value="10"></label>
+    <label>측정값<input id="mea" type="number" step="any" value="1214"></label>
+    <label>단위<select id="unit"><option>mm</option><option>µm</option><option>°C</option><option>N·m</option></select></label>
+    <button class="save" id="go" type="button">판정</button>
+  </form>
+  <table><tr><th>규격</th><th class="n">측정</th><th class="n">차이</th><th>판정</th></tr><tr id="res"></tr></table>
+  <p class="note">교육용 가상 인물의 예시입니다. 세 도구 모두 sample/personal/DESIGN.md 한 장을 따릅니다.</p>
+</section>
+
+</div>
+<script>
+function judge(){
+  const n=+document.getElementById('nom').value, t=+document.getElementById('tol').value, m=+document.getElementById('mea').value, u=document.getElementById('unit').value;
+  const d=m-n, ok=Math.abs(d)<=t, f=v=>v.toLocaleString('ko-KR',{maximumFractionDigits:3});
+  document.getElementById('res').innerHTML=`<td>${f(n)} ± ${f(t)} ${u}</td><td class="n">${f(m)}</td><td class="n">${d>0?'+':''}${f(d)}</td><td>${ok?'<span class="ok">OK</span>':'<span class="ng">NG</span>'}</td>`;
+}
+document.getElementById('go').onclick=judge; judge();
+</script>
+</body>
+</html>

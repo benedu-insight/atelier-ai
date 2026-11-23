@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CX-5000 RF Matcher 업그레이드 제안서 · HKT (강의용 재현본)</title>
+<link rel="icon" href="../common/hkt_symbol.svg">
+<link rel="stylesheet" href="../common/hkt.css">
+<style>
+.cause{display:grid;grid-template-columns:600px 1fr;gap:28px;height:100%}
+.diag{border:1px solid var(--hairline);border-radius:14px;padding:16px;background:#fff}
+.diag svg{width:100%;height:auto;display:block}
+.cap{font-size:12.5px;color:var(--steel);margin-top:8px}
+.why ol{margin:0;padding-left:22px;font-size:15px;line-height:1.6}
+.why li{margin-bottom:10px}
+.why li b{color:var(--primary-deep)}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.res .row{display:flex;justify-content:space-between;font-size:14px;border-top:1px solid var(--hairline);padding-top:8px;margin-top:6px}
+.terms{display:grid;grid-template-columns:1.5fr 1fr;gap:24px}
+</style>
+</head>
+<body>
+<span class="repro">강의용 재현본 · 가상 회사·수치</span>
+<div class="viewer">
+
+<div class="fit"><section class="pg"><div class="cover">
+  <img class="lg" src="../common/hkt_logo_horizontal_white.svg" alt="HKT (주)한결테크">
+  <p class="kick">UPGRADE PROPOSAL · CX-5000 RF MATCHER</p>
+  <h1>CX-5000 RF Matcher<br>DC 모터 제어부 디지털 업그레이드 제안</h1>
+  <div class="line"></div>
+  <div class="meta"><div><small>PREPARED FOR</small>서린파운드리 설비기술팀</div><div><small>PREPARED BY</small>HKT (주)한결테크 수리사업팀</div><div><small>DATE</small>2026. 09. 21 · Rev.1</div></div>
+</div></section></div>
+
+<div class="fit"><section class="pg"><div class="sl">
+  <div class="sl-head"><div><p class="eyebrow"><b>02</b>/ ROOT CAUSE</p><h2 class="title">저전류 구간에서 모터가 멈추는 이유</h2><p class="sub">고객이 준 회로도 3·4쪽을 AI에 넣고 “왜 저전류에서 모터가 안 도는지” 설명을 받은 뒤 담당자가 검증했다</p></div><img src="../common/hkt_logo_horizontal.svg" alt=""></div>
+  <div class="sl-body"><div class="cause">
+    <div class="diag">
+      <svg viewBox="0 0 560 300" font-family="HKT Sans, Google Sans, sans-serif" font-size="13">
+        <rect x="10" y="110" width="110" height="60" rx="8" fill="#F4F8FE" stroke="#CBD8ED"/><text x="65" y="136" text-anchor="middle" fill="#0B1220" font-weight="700">위상·크기</text><text x="65" y="154" text-anchor="middle" fill="#5B6472">검출 신호</text>
+        <path d="M120 140h40" stroke="#1F4E9C" stroke-width="2" marker-end="url(#a)"/>
+        <rect x="160" y="110" width="110" height="60" rx="8" fill="#F4F8FE" stroke="#CBD8ED"/><text x="215" y="136" text-anchor="middle" fill="#0B1220" font-weight="700">Op-Amp</text><text x="215" y="154" text-anchor="middle" fill="#5B6472">오차 증폭</text>
+        <path d="M270 140h40" stroke="#1F4E9C" stroke-width="2" marker-end="url(#a)"/>
+        <rect x="310" y="96" width="130" height="88" rx="8" fill="#FBE8D3" stroke="#C98A2B" stroke-width="2"/><text x="375" y="128" text-anchor="middle" fill="#0B1220" font-weight="700">선형 Push-Pull</text><text x="375" y="146" text-anchor="middle" fill="#5B6472">NPN / PNP 한 쌍</text><text x="375" y="166" text-anchor="middle" fill="#8A5A12" font-weight="700">±0.7V 데드존</text>
+        <path d="M440 140h40" stroke="#1F4E9C" stroke-width="2" marker-end="url(#a)"/>
+        <circle cx="515" cy="140" r="34" fill="#fff" stroke="#1F4E9C" stroke-width="2"/><text x="515" y="137" text-anchor="middle" fill="#0B1220" font-weight="700">DC</text><text x="515" y="153" text-anchor="middle" fill="#5B6472">모터</text>
+        <g transform="translate(40,206)"><path d="M0 70h480" stroke="#CBD8ED"/><path d="M240 0v84" stroke="#CBD8ED"/><path d="M0 70 L190 70 L210 46 L240 46 L270 46 L290 22 L480 0" fill="none" stroke="#8A93A3" stroke-dasharray="4 4"/><path d="M0 70 L200 70 L240 70 L280 70 L300 40 L480 0" fill="none" stroke="#C1443C" stroke-width="2.5"/><rect x="200" y="58" width="80" height="24" fill="#FBE7E5" opacity=".8"/><text x="240" y="74" text-anchor="middle" fill="#C1443C" font-size="12" font-weight="700">출력 없음</text><text x="486" y="4" fill="#5B6472" font-size="11">구동 전압</text></g>
+        <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1F4E9C"/></marker></defs>
+      </svg>
+      <p class="cap">FIG.1 모터 구동단 블록도 (고객 회로도 Sheet 2/2를 재구성) · 아래: 오차가 작을 때 출력이 0이 되는 구간</p>
+    </div>
+    <div class="why"><ol>
+      <li>매칭이 거의 끝나 오차가 작아지면 Op-Amp 출력도 작아진다.</li>
+      <li>선형 Push-Pull 트랜지스터는 <b>약 ±0.7V 아래에서 켜지지 않는다</b>. 이 구간에서 모터 전류가 0이 된다.</li>
+      <li>모터는 마지막 몇 스텝을 가지 못하고 멈췄다가, 오차가 커지면 다시 튄다. 이것이 <b>반사전력 헌팅</b>으로 보인다.</li>
+      <li>노후 모터는 기동 전류가 더 커서 멈춤 구간이 넓어진다.</li>
+    </ol>
+    <p class="mute" style="font-size:13.5px;margin-top:14px">검증: 담당자가 측정 파형과 대조해 확인. AI 설명 중 MCU 부분 오해 1건은 수정함.</p></div>
+  </div></div></div>
+  <div class="foot"><img src="../common/hkt_symbol.svg" alt="">CX-5000 Matcher Upgrade Proposal<span class="n">02 / 05</span></div>
+</section></div>
+
+<div class="fit"><section class="pg"><div class="sl">
+  <div class="sl-head"><div><p class="eyebrow"><b>03</b>/ UPGRADE SOLUTION</p><h2 class="title">아날로그 DC 서보 → 디지털 스테핑 제어</h2></div><img src="../common/hkt_logo_horizontal.svg" alt=""></div>
+  <div class="sl-body">
+    <table class="tbl"><thead><tr><th style="width:22%">항목</th><th>현재 (원 사양)</th><th>HKT 업그레이드</th></tr></thead><tbody>
+      <tr><td>구동 모터</td><td>DC 모터 + 베벨 기어 3:1</td><td>2상 스테핑 모터 + 웜 기어 18:1</td></tr>
+      <tr><td>드라이버</td><td>Op-Amp + 선형 Push-Pull (데드존 있음)</td><td>PWM 초퍼 드라이버 (저속에서도 토크 유지)</td></tr>
+      <tr><td>위치 제어</td><td>속도 3단(Slow/Med/Fast) 아날로그</td><td>스텝 펄스로 위치 지정, 디지털 CPU 보드</td></tr>
+      <tr><td>오류 처리</td><td>없음</td><td>튠 블레이드 위치 리셋, 오류 신호 출력</td></tr>
+      <tr><td>장비 연결</td><td colspan="2"><span class="good">변경 없음</span> — 커넥터·통신 그대로, 매칭 네트워크도 그대로</td></tr>
+    </tbody></table>
+    <div class="flow" style="margin-top:26px">
+      <div class="bx start">입고 · 외관 확인</div><div class="ar">→</div><div class="bx">분해</div><div class="ar">→</div><div class="bx">모터·드라이버 교체</div><div class="ar">→</div><div class="bx">CPU 보드 교체</div><div class="ar">→</div><div class="bx">게인·위치 보정</div><div class="ar">→</div><div class="bx">매칭 시험 3회</div><div class="ar">→</div><div class="bx">출하</div>
+    </div>
+  </div></div>
+  <div class="foot"><img src="../common/hkt_symbol.svg" alt="">CX-5000 Matcher Upgrade Proposal<span class="n">03 / 05</span></div>
+</section></div>
+
+<div class="fit"><section class="pg"><div class="sl">
+  <div class="sl-head"><div><p class="eyebrow"><b>04</b>/ VERIFIED RESULT</p><h2 class="title">같은 장비에서 바꾸기 전과 후</h2><p class="sub">평가 데이터를 별첨 — 수치는 교육용 예시</p></div><img src="../common/hkt_logo_horizontal.svg" alt=""></div>
+  <div class="sl-body"><div class="res">
+    <div class="stat"><p class="k">MATCHING SPEED</p><p class="v">0.48<small style="font-size:20px">s</small></p><div class="row"><span>전</span><b>1.10 s</b></div><div class="row"><span>개선</span><b class="good">56% 단축</b></div></div>
+    <div class="stat"><p class="k">REFLECTED POWER</p><p class="v amber">0.07<small style="font-size:20px">W</small></p><div class="row"><span>전</span><b>0.62 W</b></div><div class="row"><span>개선</span><b class="good">89% 감소</b></div></div>
+    <div class="stat"><p class="k">TUNE POSITION SPREAD</p><p class="v">6<small style="font-size:20px">count</small></p><div class="row"><span>전</span><b>60 count</b></div><div class="row"><span>개선</span><b class="good">90% 감소</b></div></div>
+  </div>
+  <p class="mute" style="margin-top:22px;font-size:14px">조건: 13.56MHz · 1,000W, 같은 레시피로 각 3회. 반사전력 헌팅이 사라지고 매칭 위치가 한곳에 모인다.</p></div></div>
+  <div class="foot"><img src="../common/hkt_symbol.svg" alt="">CX-5000 Matcher Upgrade Proposal<span class="n">04 / 05</span></div>
+</section></div>
+
+<div class="fit"><section class="pg"><div class="sl">
+  <div class="sl-head"><div><p class="eyebrow"><b>05</b>/ SCOPE &amp; COMMERCIAL TERMS</p><h2 class="title">대상 3종, 대당 개조 금액</h2></div><img src="../common/hkt_logo_horizontal.svg" alt=""></div>
+  <div class="sl-body"><div class="terms">
+    <table class="tbl"><thead><tr><th>품번</th><th>품명</th><th>적용 공정</th><th class="r">대당 금액 (원)</th></tr></thead><tbody>
+      <tr><td>CX-M101</td><td>CVD RF Match</td><td>CX-5000 CVD</td><td class="r">5,400,000</td></tr>
+      <tr><td>CX-M102</td><td>Etch RF Match</td><td>CX-5000 Etch</td><td class="r">5,400,000</td></tr>
+      <tr><td>CX-M103</td><td>Etch RF Match</td><td>Metal · Poly Etch</td><td class="r">5,400,000</td></tr>
+    </tbody></table>
+    <div class="vt"><p class="n">01</p><p style="margin-top:10px;font-size:15px;line-height:1.6">VAT 별도 · 납기 입고 후 3주<br>보증 12개월 (교체 부품)<br>첫 1대 시범 개조 후 확대 적용 제안</p></div>
+  </div></div></div>
+  <div class="foot"><img src="../common/hkt_symbol.svg" alt="">CX-5000 Matcher Upgrade Proposal<span class="n">05 / 05</span></div>
+</section></div>
+
+</div>
+<script src="../common/fit.js"></script>
+</body>
+</html>

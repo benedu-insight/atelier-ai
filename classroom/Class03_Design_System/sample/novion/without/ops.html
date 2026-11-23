@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>출하관리</title>
+
+<style>
+body{margin:0;font-family:"Malgun Gothic",sans-serif;background:#e9ecef;font-size:13px}
+header{background:#0d6efd;color:#fff;padding:12px 20px;font-size:18px;font-weight:bold}
+.wrap{padding:20px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.cards div{padding:16px;color:#fff;font-weight:bold;border-radius:0}
+.cards div:nth-child(1){background:#198754}.cards div:nth-child(2){background:#fd7e14}.cards div:nth-child(3){background:#dc3545}.cards div:nth-child(4){background:#6f42c1}
+.cards b{display:block;font-size:30px}
+.btns button{margin-right:4px;padding:6px 12px;border:1px solid #999;background:#fff;border-radius:2px}
+.btns button.on{background:#ffc107;border-color:#ffc107}
+table{width:100%;border-collapse:collapse;background:#fff;margin-top:10px}
+th{background:#343a40;color:#fff;padding:6px;font-size:12px}
+td{padding:6px;border-bottom:1px solid #dee2e6;text-align:center}
+tr:nth-child(even) td{background:#fff3cd}
+.s1{color:#198754;font-weight:bold}.s2{color:#fd7e14;font-weight:bold}.s3{color:#fff;background:#dc3545;padding:2px 6px}
+</style>
+</head>
+<body>
+<header>■ 출하관리 시스템 Ver 1.0</header>
+<div class="wrap">
+  <div class="cards"><div><b>128</b>11월 출하</div><div><b>22</b>출하대기</div><div><b>4</b>지연</div><div><b>36</b>CM입고</div></div>
+  <div class="btns"><button class="on">전체</button><button>출하대기</button><button>지연</button><button>NPG</button><button>NMD</button></div>
+  <table>
+    <tr><th>PO번호</th><th>고객사</th><th>모델명</th><th>수량</th><th>출하예정일</th><th>생산처</th><th>상태</th></tr>
+    <tr><td>PO-2611-07</td><td>Veltra Systems</td><td>NPG-2060HG</td><td>6</td><td>2026/11/18</td><td>HKT</td><td class="s1">출하완료</td></tr>
+    <tr><td>PO-2611-09</td><td>Pyxis Semitech</td><td>NMD-1304</td><td>10</td><td>2026/11/21</td><td>본사</td><td class="s2">대기</td></tr>
+    <tr><td>PO-2610-22</td><td>Jinwoo Engineering</td><td>NGL-1004HD</td><td>4</td><td>2026/11/12</td><td>본사</td><td><span class="s3">지연!!</span></td></tr>
+    <tr><td>PO-2611-11</td><td>Veltra Systems</td><td>NPG-2060HG</td><td>2</td><td>2026/11/25</td><td>HKT</td><td class="s2">대기</td></tr>
+    <tr><td>PO-2611-12</td><td>Semora</td><td>NMD-1304</td><td>8</td><td>2026/11/26</td><td>본사</td><td class="s2">대기</td></tr>
+    <tr><td>PO-2610-19</td><td>Eunsol Tech</td><td>NPG-2060HG</td><td>3</td><td>2026/11/10</td><td>HKT</td><td class="s1">출하완료</td></tr>
+  </table>
+  <p style="font-size:11px;color:#888">강의용 나쁜 예 (교육용 가상 회사)</p>
+</div>
+</body>
+</html>

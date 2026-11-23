@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novion · RF Generator와 Matcher</title>
+<link rel="icon" href="assets/novion_symbol.svg">
+<link rel="stylesheet" href="novion.css">
+<style>
+.hero-in{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:56px 0 72px}
+.hero p.lead{font-size:18px;color:var(--ink-secondary);max-width:520px;margin:18px 0 28px}
+.hero .actions{display:flex;gap:10px;flex-wrap:wrap}
+.panel{background:rgba(255,255,255,.82)}
+.panel .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--hairline);font-size:14px}
+.panel .row:last-child{border-bottom:0}
+.panel .row span:first-child{color:var(--ink-mute)}
+.products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
+.products .card{display:flex;flex-direction:column;gap:6px}
+.products .card .btn{align-self:flex-start;margin-top:14px}
+.numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+@media (max-width:900px){.hero-in{grid-template-columns:1fr}.products,.numbers{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <nav class="site-nav" aria-label="주 메뉴">
+      <img src="assets/novion_logo_horizontal.svg" alt="Novion">
+      <a class="menu" href="#products">Products</a><a class="menu" href="#apps">Applications</a><a class="menu" href="#support">Support</a><a class="menu" href="portal.html">Novion Connect</a>
+      <a class="btn btn-primary btn-sm" href="quote.html">견적 요청</a>
+    </nav>
+    <div class="hero-in">
+      <div>
+        <div class="eyebrow" style="color:var(--primary)">RF Power for Plasma</div>
+        <h1 class="display-xl" style="margin-top:14px">공진하는 파워,<br>2 kW부터 10 kW까지</h1>
+        <p class="lead lead-f">식각·증착 장비에 들어가는 RF Generator와 Auto Matcher를 설계하고 만듭니다. 출하 전 전 수량 부하 시험 후 납품합니다.</p>
+        <div class="actions"><a class="btn btn-primary" href="quote.html">견적 요청</a><a class="btn btn-ghost" href="#products">사양서 보기</a></div>
+      </div>
+      <div class="card panel">
+        <div class="eyebrow">Featured · NPG-2060HG</div>
+        <div class="heading" style="margin:8px 0 10px">6 kW @ 13.56 MHz</div>
+        <div class="row"><span>출력</span><span class="tnum">0.1 – 6.0 kW</span></div>
+        <div class="row"><span>효율</span><span class="tnum">≥ 72 %</span></div>
+        <div class="row"><span>반사전력 보호</span><span class="tnum">VSWR ≤ 1.2 유지</span></div>
+        <div class="row"><span>통신</span><span>EtherCAT · RS-232</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="products">
+  <div class="wrap">
+    <div class="eyebrow">Products</div>
+    <h2 class="display-lg" style="margin-top:8px">장비에 맞는 출력과 매칭</h2>
+    <div class="products">
+      <div class="card"><div class="eyebrow">RF Generator</div><div class="heading">NPG-2060HG</div><div class="spec"><span><b>Output</b>6 kW</span><span><b>Freq.</b>13.56 MHz</span><span><b>Eff.</b>≥ 72 %</span></div><a class="btn btn-secondary btn-sm" href="#">사양서</a></div>
+      <div class="card"><div class="eyebrow">Auto Matcher</div><div class="heading">NMD-1304</div><div class="spec"><span><b>Power</b>3 kW</span><span><b>Tune</b>&lt; 1.5 s</span><span><b>Cap.</b>VVC 2개</span></div><a class="btn btn-secondary btn-sm" href="#">사양서</a></div>
+      <div class="card"><div class="eyebrow">Low Power</div><div class="heading">NGL-1004HD</div><div class="spec"><span><b>Output</b>1 kW</span><span><b>Freq.</b>13.56 MHz</span><span><b>Size</b>1U</span></div><a class="btn btn-secondary btn-sm" href="#">사양서</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section soft" id="apps">
+  <div class="wrap">
+    <div class="eyebrow">숫자로 보는 Novion · 예시 값</div>
+    <div class="numbers">
+      <div class="card stat"><div class="label">누적 납품</div><div class="value">3,200<small>대</small></div><span class="badge success">2026년 기준</span></div>
+      <div class="card stat"><div class="label">평균 고장 간격 (MTBF)</div><div class="value">52,000<small>h</small></div><span class="badge success">현장 데이터</span></div>
+      <div class="card stat"><div class="label">평균 수리 기간</div><div class="value">9<small>일</small></div><span class="badge warning">RMA 접수부터</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="support">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
+    <div><h2 class="display-lg">납품 후 장비 상태는 Novion Connect에서</h2><p class="mute" style="margin:10px 0 0">S/N별 상태, RMA 접수, 납기 조회를 한 화면에서 봅니다.</p></div>
+    <a class="btn btn-primary" href="portal.html">Novion Connect 열기</a>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center">
+    <img src="assets/novion_logo_horizontal_white.svg" alt="Novion" style="height:26px">
+    <span>novion.example · 교육용 가상 회사 · 강의 예시 화면</span>
+  </div>
+</footer>
+</body>
+</html>

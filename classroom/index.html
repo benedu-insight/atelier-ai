@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>benedu atelier 강의실</title>
+<link rel="icon" href="assets/benedu_atelier_symbol.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  /* benedu atelier DESIGN.md v2.1 tokens. Headline KIMM Bold / text A2Z when installed, else Pretendard. */
+  :root {
+    --ink: #0A0A0A; --body: #3A3A3A; --muted: #6A6A6A;
+    --canvas: #FFFAF0; --soft: #FAF5E8; --card: #F5F0E0; --strong: #EBE6D6; --hair: #E5E5E5;
+    --pink: #FF4D8B; --peach: #FFB084; --lav: #B8A4ED; --mint: #A4D4C5; --teal: #1A3A3A;
+    --f-head: KIMM_Bold, "한국기계연구원_Bold", "Pretendard Variable", Pretendard, sans-serif;
+    --f-text: "에이투지체", "A2Z", "Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif;
+    --gut: clamp(16px, 4vw, 40px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--canvas); -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--canvas); color: var(--body); font: 400 16px/1.65 var(--f-text); word-break: keep-all; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ol, ul { margin: 0; }
+  ol, ul { padding: 0; list-style: none; }
+  a { color: var(--ink); }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gut); }
+
+  .top { border-bottom: 1px solid var(--hair); }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 700; color: var(--ink); }
+  .brand img { width: 36px; height: 36px; }
+  .out { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border: 1.5px solid var(--ink); border-radius: 9999px; font-size: 14px; font-weight: 600; text-decoration: none; }
+  .out:hover { background: var(--card); }
+
+  .head { padding: clamp(40px, 7vw, 72px) 0 32px; }
+  .kicker { font-size: 14px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+  h1 { font-family: var(--f-head); font-weight: 700; color: var(--ink); font-size: clamp(34px, 5vw, 48px); line-height: 1.15; letter-spacing: -.9px; }
+  .head p.lead { margin-top: 14px; font-size: 17px; max-width: 38em; }
+
+  .periods { display: grid; gap: 40px; padding-bottom: 72px; }
+  .p-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .p-no { font-family: var(--f-head); font-weight: 700; font-size: 15px; color: var(--muted); }
+  .p-head h2 { font-family: var(--f-head); font-weight: 700; font-size: 24px; letter-spacing: -.4px; color: var(--ink); }
+  .lects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .lect { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 16px; background: var(--card); border: 1px solid var(--hair); }
+  .lect .no { align-self: flex-start; font-size: 13px; font-weight: 700; color: var(--ink); background: var(--canvas); border: 1px solid var(--strong); border-radius: 9999px; padding: 3px 10px; }
+  .lect h3 { font-size: 18px; line-height: 1.4; color: var(--ink); }
+  .lect .go { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; border-radius: 9999px; font-size: 15px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--ink); }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { background: #2A2A2A; }
+  .btn-secondary { background: var(--canvas); color: var(--ink); }
+  .btn-secondary:hover { background: #fff; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink); }
+  .chip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+  [data-d="sales"] { --c: var(--pink); } [data-d="plan"] { --c: var(--lav); } [data-d="eng"] { --c: var(--mint); } [data-d="qa"] { --c: var(--peach); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+
+  footer { border-top: 1px solid var(--hair); padding: 24px 0 32px; font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+  @media (max-width: 1023px) { .lects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .lects { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../"><img src="assets/benedu_atelier_symbol.svg" alt="" width="36" height="36">benedu atelier 강의실</a>
+    <a class="out" href="../">과정 소개</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="head">
+    <p class="kicker">제조 현장 실무자를 위한 AI 실무 과정</p>
+    <h1>강의실</h1>
+    <p class="lead">강의 순서대로 열어 보세요. 사례 샘플은 새 탭으로 열립니다.</p>
+  </div>
+
+  <ol class="periods">
+    <li>
+      <div class="p-head"><span class="p-no">1교시</span><h2>AI로 무엇을 만들 수 있을까</h2></div>
+      <ol class="lects">
+        <li class="lect">
+          <span class="no">강의 1</span>
+          <h3>AI 창작물과 바이브코딩</h3>
+          <div class="go"><a class="btn btn-primary" href="Class01_Orientation/index.html">강의 열기</a><a class="btn btn-secondary" href="Class01_Orientation/dev-map.html">개발자 별자리 지도</a></div>
+        </li>
+        <li class="lect">
+          <span class="no">강의 2</span>
+          <h3>바이브코딩 시작하기</h3>
+          <div class="go"><a class="btn btn-primary" href="Class02_Starting_Vibe_Coding/index.html">강의 열기</a><a class="btn btn-secondary" href="Class02_Starting_Vibe_Coding/prompt-sheet.html">프롬프트 시트</a></div>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <div class="p-head"><span class="p-no">2교시</span><h2>한 회사처럼 보이게, 그리고 영업 사례</h2></div>
+      <ol class="lects">
+        <li class="lect">
+          <span class="no">강의 3</span>
+          <h3>디자인 시스템을 먼저 정한다</h3>
+          <div class="go"><a class="btn btn-primary" href="Class03_Design_System/index.html">강의 열기</a></div>
+        </li>
+        <li class="lect">
+          <span class="no">강의 4</span>
+          <h3>바이브코딩으로 회사 홈페이지 만들기</h3>
+          <div class="go"><a class="btn btn-primary" href="Class04_Homepage/index.html">강의 열기</a><a class="btn btn-secondary" href="Class04_Homepage/prompt-sheet.html">프롬프트 시트</a></div>
+        </li>
+        <li class="lect">
+          <span class="no">강의 5</span>
+          <h3>영업·마케팅 사례</h3>
+          <div class="chips"><span class="chip" data-d="sales">영업·마케팅</span></div>
+          <div class="go"><a class="btn btn-primary" href="Class05_Sales_Marketing_Case_Study/index.html">강의 열기</a></div>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <div class="p-head"><span class="p-no">3교시</span><h2>생산 · 개발 · 품질 사례</h2></div>
+      <ol class="lects">
+        <li class="lect">
+          <span class="no">강의 6</span>
+          <h3>생산·개발·품질은 AI로 무엇을 했나</h3>
+          <div class="chips"><span class="chip" data-d="plan">생산관리</span><span class="chip" data-d="eng">생산기술·개발</span><span class="chip" data-d="qa">품질</span></div>
+          <div class="go"><a class="btn btn-primary" href="Class06_Manufacturing_Development_Quality_Control/index.html">강의 열기</a></div>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <div class="p-head"><span class="p-no">4교시</span><h2>일 말고, 나를 위한 무언가</h2></div>
+      <ol class="lects">
+        <li class="lect">
+          <span class="no">강의 7</span>
+          <h3>개인 · 취미 프로젝트</h3>
+          <div class="go"><a class="btn btn-primary" href="Class07_Personal_Hobby_Projects/index.html">강의 열기</a></div>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>benedu atelier는 <a href="https://benedu-insight.github.io/">Benedu Insight</a>의 AI 실무 교육 브랜드입니다.</p>
+    <p>문의 benedu.insight@gmail.com</p>
+  </div>
+</footer>
+</body>
+</html>

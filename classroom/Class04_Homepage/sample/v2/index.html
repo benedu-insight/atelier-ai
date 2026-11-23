@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>베네듀 인사이트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root {
+    --purple: #7030A0; --green: #0F8C50; --charcoal: #2D2D2D;
+    --soft-purple: #F0E6F6; --soft-green: #E5F4EC; --green-text: #0B6B3D;
+    --page: #F7F8FA; --card: #FFFFFF; --line: #E5E7EB; --line-soft: #F3F4F6; --muted: #5B6270;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Pretendard, system-ui, sans-serif; color: var(--charcoal); background: var(--page); line-height: 1.7; word-break: keep-all; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line-soft); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  header img { height: 36px; display: block; }
+  nav { display: flex; align-items: center; gap: 28px; font-size: 15px; color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 26px; border-radius: 999px; font-weight: 700; font-size: 16px; }
+  .btn-sm { height: 40px; padding: 0 18px; font-size: 14px; }
+  .btn-purple { background: var(--purple); color: #fff; }
+  .btn-line { border: 1px solid var(--line); background: #fff; }
+
+  .hero { padding: 96px 0 88px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: center; }
+  .eyebrow { display: inline-block; background: var(--soft-purple); color: var(--purple); font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px; }
+  h1 { font-size: 54px; line-height: 1.2; letter-spacing: -1.5px; margin: 20px 0; font-weight: 800; }
+  h1 em { font-style: normal; color: var(--purple); }
+  .lead { font-size: 18px; color: var(--muted); max-width: 34em; }
+  .actions { display: flex; gap: 12px; margin-top: 32px; }
+  .facts { display: flex; gap: 40px; margin-top: 40px; }
+  .facts b { display: block; font-size: 30px; }
+  .facts small { color: var(--muted); font-size: 13px; }
+  .portal { background: var(--card); border: 1px solid var(--line-soft); border-radius: 24px; padding: 32px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .portal h3 { font-size: 20px; margin-bottom: 8px; }
+  .portal p { color: var(--muted); font-size: 15px; }
+  .course-row { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line-soft); border-radius: 16px; padding: 14px 16px; margin-top: 12px; font-size: 15px; }
+  .code { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--soft-green); color: var(--green-text); white-space: nowrap; }
+  .course-row span:last-child { margin-left: auto; color: var(--muted); font-size: 13px; white-space: nowrap; }
+
+  section { padding: 96px 0; border-top: 1px solid var(--line-soft); }
+  section.white { background: var(--card); }
+  .sec-head { max-width: 40em; margin-bottom: 48px; }
+  .sec-head .eyebrow { margin-bottom: 14px; }
+  h2 { font-size: 38px; line-height: 1.3; letter-spacing: -1px; font-weight: 800; }
+  h2 em { font-style: normal; color: var(--purple); }
+  .sec-head p { color: var(--muted); margin-top: 14px; font-size: 17px; }
+
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pillar { background: var(--card); border: 1px solid var(--line-soft); border-radius: 24px; padding: 30px; }
+  section.white .pillar { background: var(--page); }
+  .pillar .num { font-size: 13px; font-weight: 700; color: var(--green-text); }
+  .pillar h3 { font-size: 20px; margin: 10px 0 8px; }
+  .pillar p { color: var(--muted); font-size: 15px; }
+
+  .courses { display: grid; gap: 16px; }
+  .course { display: grid; grid-template-columns: 140px 1fr 160px; gap: 24px; align-items: start; background: var(--card); border: 1px solid var(--line-soft); border-radius: 24px; padding: 28px 30px; }
+  .course h3 { font-size: 20px; margin-bottom: 6px; }
+  .course p { color: var(--muted); font-size: 15px; }
+  .course .meta { text-align: right; color: var(--muted); font-size: 14px; }
+  .for { display: inline-block; margin-top: 12px; font-size: 13px; color: var(--purple); background: var(--soft-purple); padding: 4px 12px; border-radius: 999px; }
+
+  .timeline { list-style: none; border-left: 2px solid var(--soft-green); padding-left: 28px; }
+  .timeline li { position: relative; padding-bottom: 26px; }
+  .timeline li::before { content: ""; position: absolute; left: -36px; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--green); }
+  .timeline b { display: block; font-size: 14px; color: var(--green-text); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+
+  form { background: var(--card); border: 1px solid var(--line-soft); border-radius: 24px; padding: 32px; display: grid; gap: 14px; }
+  label { font-size: 14px; font-weight: 600; display: grid; gap: 6px; }
+  input, select, textarea { font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+  .contact-info p { margin-top: 10px; color: var(--muted); }
+  footer { padding: 40px 0; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); }
+
+  
+  .demo-bar { position: fixed; left: 16px; bottom: 16px; z-index: 99; display: flex; gap: 8px; align-items: center;
+    font: 600 13px/1 Pretendard, sans-serif; background: #0A1A1A; color: #F5F0E0; padding: 10px 12px 10px 16px; border-radius: 999px; }
+  .demo-bar button { font: inherit; border: 0; border-radius: 999px; padding: 8px 14px; background: #A4D4C5; color: #0A0A0A; cursor: pointer; }
+  .pin { display: none; position: absolute; z-index: 50; width: 28px; height: 28px; border-radius: 50%; background: #A4D4C5; color: #0A0A0A;
+    font: 800 13px/28px Pretendard, sans-serif; text-align: center; font-style: normal; }
+  .pin.todo { background: #FF4D8B; }
+  .pin span { display: none; position: absolute; left: 34px; top: -4px; width: 270px; background: #0A1A1A; color: #F5F0E0; text-align: left;
+    font: 500 13px/1.5 Pretendard, sans-serif; padding: 10px 12px; border-radius: 10px; }
+  body.show-notes .pin, body.show-notes .pin span { display: block; }
+  .rel { position: relative; }
+  @media (max-width: 900px) {
+    .hero .wrap, .two, .pillars { grid-template-columns: 1fr; }
+    .course { grid-template-columns: 1fr; } .course .meta { text-align: left; }
+    h1 { font-size: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap rel">
+    <img src="benedu_insight_logo_KR_horizontal_color.svg" alt="베네듀 인사이트">
+    <i class="pin" style="left:200px;top:20px">1<span>공식 로고 SVG를 첨부했더니 그대로 썼다. 로고를 다시 그리거나 글자로 바꾸지 않았다.</span></i>
+    <nav>
+      <a href="#philosophy">철학</a><a href="#strengths">전문성</a><a href="#curriculum">커리큘럼</a><a href="#instructor">강사</a>
+      <a class="btn btn-sm btn-purple" href="#contact">강의 문의하기</a>
+    </nav>
+    <i class="pin todo" style="right:0;top:52px">2<span>남은 숙제: 화면이 좁아지면 메뉴가 넘친다. 모바일 메뉴와 KO/EN 전환은 아직 없다.</span></i>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap rel">
+    <div>
+      <span class="eyebrow">Plasma School for Semiconductor &amp; RF</span>
+      <h1>비어 있던 자리에<br><em>통찰</em>이 차오릅니다</h1>
+      <p class="lead">어려운 개념 앞에서 막막했던 그 순간, 누구보다 잘 압니다. 현장과 강단을 오가며 플라즈마 공정과 RF 전력전송을 가장 쉬운 엔지니어의 언어로 풀어 왔습니다.</p>
+      <div class="actions"><a class="btn btn-purple" href="#contact">강의 문의하기 →</a><a class="btn btn-line" href="#curriculum">커리큘럼 보기</a></div>
+      <div class="facts">
+        <div><b>25년+</b><small>반도체 현장 경력</small></div>
+        <div><b>120회+</b><small>교육 출강 (2003–)</small></div>
+        <div><b>3단계</b><small>Basic · Class-01 · Class-02</small></div>
+      </div>
+    </div>
+    <i class="pin" style="left:-10px;top:150px">3<span>카피는 기존 사이트 원고 파일에서 가져왔다. 숫자도 실제 값(25년, 120회)만 썼다.</span></i>
+    <aside class="portal rel">
+      <h3>온라인 강의 포탈</h3>
+      <p>추상적 이론을 눈에 보이는 그림으로. 시뮬레이터가 들어 있는 온라인 강의실입니다.</p>
+      <div class="course-row"><span class="code">Basic</span>반도체 플라즈마 기초 과정<span>11강 · 온라인</span></div>
+      <div class="course-row"><span class="code">Class-01</span>플라즈마 공정 및 어플리케이션<span>6강</span></div>
+      <div class="course-row"><span class="code">Class-02</span>RF 전력전송 이론<span>7강</span></div>
+      <i class="pin" style="right:-12px;top:-12px">4<span>레퍼런스(히어로 갤러리)에서 고른 "왼쪽 메시지 + 오른쪽 제품 카드" 배치를 그대로 지시했다.</span></i>
+    </aside>
+  </div>
+</div>
+
+<section id="philosophy" class="white">
+  <div class="wrap rel">
+    <div class="sec-head">
+      <span class="eyebrow">철학</span>
+      <h2>나무가 아닌 <em>숲</em>을,<br>마음속에 한 폭의 그림처럼.</h2>
+      <p>AI가 많은 것을 대신 풀어 주는 시대일수록 스스로 그려 낼 수 있는 힘이 소중해집니다. 눈을 감았을 때 플라즈마 장비의 원리와 구성, 그 쓰임이 한 장의 그림으로 떠오르는 순간을 함께 만듭니다.</p>
+    </div>
+    <i class="pin todo" style="right:0;top:0">5<span>남은 숙제: 깔끔하지만 "어디서 본 듯한" 교육 사이트다. 이 브랜드만의 장면(플라즈마, 링)이 아직 없다.</span></i>
+  </div>
+</section>
+
+<section id="strengths">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">전문성</span>
+      <h2>신뢰와 실력으로 증명하는 전문성</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><div class="num">01</div><h3>25년 이상의 현장 데이터</h3><p>반도체 제조사 FDC·Dry Etch 12년, RF 장비사 개발·기술지원 16년. 현장에서만 쌓이는 공정·설비 노하우를 강의에 담습니다.</p></div>
+      <div class="pillar"><div class="num">02</div><h3>120회 이상의 검증된 강의</h3><p>사내 출강, 인재양성 기관, 협력사 교육까지. 신입부터 베테랑, 비전공자까지 수준별 흐름을 갖췄습니다.</p></div>
+      <div class="pillar"><div class="num">03</div><h3>시각화 기반 직관 학습</h3><p>PhET 시뮬레이션, 다큐멘터리, 3D 시각화로 양자역학·전자기학을 머릿속 그림으로 바꿉니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum" class="white">
+  <div class="wrap rel">
+    <div class="sec-head">
+      <span class="eyebrow">커리큘럼</span>
+      <h2>입문부터 현장까지, 세 단계</h2>
+      <p>입문자·비전공자는 Basic부터, 디바이스 제조사·장비사는 Class-01과 Class-02를, 부품·소재사는 Class-01을 권합니다.</p>
+    </div>
+    <div class="courses">
+      <div class="course"><span class="code">Basic</span><div><h3>반도체 플라즈마 기초 과정</h3><p>원자와 에너지 준위에서 시작해 플라즈마 생성, RF 전력, 임피던스 매칭, RF Generator까지. 수식보다 그림과 실험으로 이해합니다.</p><span class="for">입문자 · 비전공자 · 취업준비생</span></div><div class="meta">온라인 11강<br>03·08강 무료</div></div>
+      <div class="course"><span class="code">Class-01</span><div><h3>반도체 플라즈마 공정 및 어플리케이션</h3><p>원자론과 화학 결합, 가스 방전 제어, CVD·Dry Etch·PVD 장비 어플리케이션까지.</p><span class="for">디바이스 제조사 · 장비사 · 부품·소재사</span></div><div class="meta">7~8시간<br>6강</div></div>
+      <div class="course"><span class="code">Class-02</span><div><h3>플라즈마 형성을 위한 RF 전력전송 이론</h3><p>파동과 반사, 임피던스, Matching Network, RF Generator와 센서까지 현장 파라미터로 연결합니다.</p><span class="for">디바이스 제조사 · 장비사</span></div><div class="meta">7~8시간<br>7강</div></div>
+    </div>
+    <i class="pin" style="left:-12px;top:230px">6<span>사이트맵에서 정한 순서대로 섹션이 나왔다. 과정명·시간·대상이 실제 커리큘럼 파일과 같다.</span></i>
+  </div>
+</section>
+
+<section id="instructor">
+  <div class="wrap two">
+    <div class="sec-head">
+      <span class="eyebrow">강사</span>
+      <h2>대표강사 <small style="font-size:20px;color:var(--muted)">Ben</small></h2>
+      <p>반도체 공장과 RF 장비 현장에서 25년. 보이지 않는 것을 보이게 만드는 강의를 합니다.</p>
+    </div>
+    <ul class="timeline">
+      <li><b>1998 – 2009</b>반도체 제조사 FDC 그룹, Dry Etch 설비·공정</li>
+      <li><b>2010 – 2026</b>RF 장비사 개발·어플리케이션·제조·마케팅</li>
+      <li><b>2003 – 현재</b>사내외 출강 누적 120회 이상</li>
+    </ul>
+  </div>
+</section>
+
+<section id="contact" class="white">
+  <div class="wrap two rel">
+    <div class="contact-info">
+      <span class="eyebrow">문의</span>
+      <h2 style="margin-top:14px">강의 문의하기</h2>
+      <p>회사와 관심 과정을 남겨 주시면 맞춤 구성을 제안드립니다.</p>
+      <p>T 010-2376-3891<br>E benedu.insight@gmail.com</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('강의용 재현본입니다. 실제 전송은 final에서 연결합니다.');">
+      <label>회사명<input required></label>
+      <label>이름·직책<input required></label>
+      <label>관심 과정<select><option>Basic</option><option>Class-01</option><option>Class-02</option><option>Class-01 + 02</option></select></label>
+      <label>문의 내용<textarea rows="4"></textarea></label>
+      <button class="btn btn-purple" type="submit">문의 보내기</button>
+    </form>
+    <i class="pin todo" style="right:-12px;top:-12px">7<span>남은 숙제: 폼이 아직 어디로도 전송되지 않는다. 개인정보 동의, 스팸 방지, 전송 완료 안내도 없다.</span></i>
+    <i class="pin todo" style="left:-12px;top:200px">8<span>남은 숙제: 검색·공유용 title/description/OG 이미지가 비어 있다. 링크를 보내면 미리보기가 안 뜬다.</span></i>
+  </div>
+</section>
+
+<footer><div class="wrap">© 2026 베네듀 인사이트 · 경기도 오산시</div></footer>
+
+<div class="demo-bar">v2 · 레퍼런스 + DESIGN.md + 사이트맵 (강의용 재현본) <button type="button" onclick="document.body.classList.toggle('show-notes')">검토 포인트 보기</button></div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benedu Insight Site Map</title>
+<meta name="description" content="Every page and section of benedu-insight.github.io and how they connect.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  
+  :root {
+    --ink: #14120F; --ash: #1D1B18; --line: #3A3733; --line-2: #2A2724; --line-hi: #57524B;
+    --bone: #EDE6DA; --bone-2: #B8B0A3; --bone-3: #8F887C;
+    --green: #0F8C50; --lav: #C9A2F2; --coral: #CC785C; --coral-hi: #DE8A6D;
+    --f-text: "Google Sans", system-ui, sans-serif;
+    --f-mono: "JetBrains Mono", ui-monospace, monospace;
+    --gut: clamp(16px, 4vw, 56px);
+    color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { background: var(--ink); -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--ink); color: var(--bone);
+    font-family: var(--f-text); font-size: 16px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; border-radius: 6px; }
+  .mono { font-family: var(--f-mono); }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: clamp(32px, 6vw, 72px) var(--gut) 56px; }
+
+  
+  .head { display: grid; gap: 28px; margin-bottom: clamp(40px, 6vw, 64px); }
+  .logo { height: 30px; width: auto; display: block; }
+  .meta { font-family: var(--f-mono); font-size: 12px; color: var(--bone-3); margin: 14px 0 0; }
+  h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.02; letter-spacing: -.03em; font-weight: 700; margin: 0; }
+  .lede { color: var(--bone-2); font-size: clamp(16px, 1.6vw, 18px); max-width: 56ch; margin: 16px 0 0; }
+
+  
+  .root {
+    position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    padding: 22px 24px; border: 1px solid var(--coral); border-radius: 14px;
+    background: linear-gradient(90deg, rgba(204,120,92,.12), rgba(204,120,92,.03));
+    transition: background .2s;
+  }
+  .root:hover { background: linear-gradient(90deg, rgba(204,120,92,.18), rgba(204,120,92,.05)); }
+  .root .ring { width: 36px; height: 36px; flex: none; }
+  .root .who { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .root h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .url { font-family: var(--f-mono); font-size: 13px; color: var(--bone-2); overflow-wrap: anywhere; }
+  .root .url { color: var(--coral-hi); }
+
+  
+  .trunk { position: relative; height: 40px; }
+  .trunk::before { content: ""; position: absolute; left: 50%; top: 0; height: 20px; border-left: 1px solid var(--line-hi); }
+  .trunk::after { content: ""; position: absolute; left: 25%; right: 25%; top: 20px; height: 20px; border: 1px solid var(--line-hi); border-bottom: 0; border-radius: 10px 10px 0 0; }
+
+  .branches { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+  .panel { border: 1px solid var(--line); border-radius: 14px; background: var(--ash); padding: 24px; min-width: 0; }
+  .ph { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 18px; border-bottom: 1px solid var(--line-2); }
+  .ph h3 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+  .tag { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--bone-3); }
+  .ph a.ttl:hover h3 { color: var(--coral-hi); }
+
+  
+  .spec { position: relative; height: 34px; margin: 20px 0 6px; border-bottom: 1px solid var(--line); }
+  .spec i { position: absolute; bottom: 0; width: 2px; height: 26px; margin-left: -1px; background: var(--c); border-radius: 1px; }
+  .spec i.ir { background: repeating-linear-gradient(to top, var(--c) 0 3px, transparent 3px 6px); }
+  .axis { display: flex; justify-content: space-between; font-family: var(--f-mono); font-size: 12px; color: var(--bone-3); margin-bottom: 8px; }
+
+  .secs { list-style: none; margin: 0; padding: 0; }
+  .secs a {
+    display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 12px;
+    padding: 12px 8px; margin: 0 -8px; border-radius: 8px; border-bottom: 1px solid var(--line-2);
+    transition: background .15s;
+  }
+  .secs li:last-child a { border-bottom: 0; }
+  .secs a:hover { background: rgba(237,230,218,.04); }
+  .nm { font-family: var(--f-mono); font-size: 12px; color: color-mix(in srgb, var(--c) 65%, var(--bone)); display: flex; align-items: center; gap: 8px; }
+  .nm::before { content: ""; width: 2px; height: 16px; background: var(--c); border-radius: 1px; flex: none; }
+  .ir .nm::before { background: repeating-linear-gradient(to bottom, var(--c) 0 3px, transparent 3px 5px); }
+  .sname { font-weight: 500; }
+  .anchor { font-family: var(--f-mono); font-size: 12px; color: var(--bone-3); }
+  .secs a:hover .anchor { color: var(--bone-2); }
+
+  .note { margin: 18px 0 0; padding: 14px 16px; border: 1px solid var(--line-2); color: var(--bone-2); font-size: 14px; line-height: 1.55; border-radius: 8px; }
+  .note.coral { border-color: rgba(204,120,92,.4); }
+  .note b { color: var(--bone); font-weight: 500; }
+
+  
+  .tree { list-style: none; margin: 8px 0 0; padding: 0; }
+  .tree > li { position: relative; padding-left: 28px; }
+  .tree > li::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; border-left: 1px solid var(--line-hi); }
+  .tree > li:last-child::before { bottom: auto; height: 34px; }
+  .tree > li::after { content: ""; position: absolute; left: 8px; top: 34px; width: 14px; border-top: 1px solid var(--line-hi); }
+
+  .node {
+    display: block; margin-top: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--ink); transition: border-color .15s, background .15s;
+  }
+  a.node:hover { border-color: var(--bone-3); }
+  .node.app { border-color: rgba(201,162,242,.35); }
+  a.node.app:hover { border-color: var(--lav); background: rgba(201,162,242,.04); }
+  .nt { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .nt strong { font-size: 16px; font-weight: 500; }
+  .kind { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--bone-3); }
+  .app .kind { color: var(--lav); }
+  .node .desc { margin: 4px 0 0; color: var(--bone-2); font-size: 14px; }
+  .node .url { display: block; margin-top: 6px; font-size: 12px; color: var(--bone-3); }
+
+  .groups { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .grp { padding: 10px 12px; border: 1px dashed var(--line-hi); border-radius: 8px; }
+  .grp strong { display: block; font-size: 14px; font-weight: 500; }
+  .grp span { font-family: var(--f-mono); font-size: 12px; color: var(--bone-3); }
+
+  
+  .legend { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line-2); font-size: 13px; color: var(--bone-2); }
+  .legend span { display: inline-flex; align-items: center; gap: 10px; }
+  .sw { width: 18px; height: 12px; border-radius: 3px; border: 1px solid var(--line); background: var(--ink); }
+  .sw.home { border-color: var(--coral); background: rgba(204,120,92,.14); }
+  .sw.app { border-color: var(--lav); }
+  .sw.grp { border-style: dashed; border-color: var(--line-hi); background: none; }
+  .sw.ln { width: 18px; height: 12px; border: 0; background: linear-gradient(90deg, #5A4BFF, #C6E83A, #FF5C3A); }
+  .foot { margin-top: 20px; font-family: var(--f-mono); font-size: 12px; color: var(--bone-3); }
+
+  @media (max-width: 900px) {
+    .branches { grid-template-columns: 1fr; }
+    .trunk { height: 24px; }
+    .trunk::before { height: 24px; }
+    .trunk::after { display: none; }
+  }
+  @media (max-width: 420px) {
+    .secs a { grid-template-columns: 52px 1fr; }
+    .anchor { grid-column: 2; margin-top: -8px; }
+    .groups { grid-template-columns: 1fr; }
+    .panel { padding: 20px 16px; }
+  }
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .wrap { padding: 24px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="head">
+    <img class="logo" src="assets/logo/benedu_insight_logo_EN_horizontal_reverse.svg" alt="Benedu Insight">
+    <div>
+      <h1>Site map</h1>
+      <p class="lede">The homepage is one long page with seven sections. Everything else — courses, simulators and study material — lives in the Online Lecture Portal.</p>
+      <p class="meta">benedu-insight.github.io · updated Nov 2026</p>
+    </div>
+  </header>
+
+  <a class="root" href="https://benedu-insight.github.io/">
+    <span class="who">
+      <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><path fill="#0F8C50" fill-rule="evenodd" d="M0 50a50 50 0 1 0 100 0a50 50 0 1 0-100 0ZM10 50a40 40 0 1 0 80 0a40 40 0 1 0-80 0Z"/></svg>
+      <span><span class="tag">Root</span><h2>Homepage</h2></span>
+    </span>
+    <span class="url">benedu-insight.github.io/</span>
+  </a>
+
+  <div class="trunk" aria-hidden="true"></div>
+
+  <div class="branches">
+    <section class="panel" aria-labelledby="h-sections">
+      <div class="ph">
+        <h3 id="h-sections">On the homepage</h3>
+        <span class="tag">7 sections · one page</span>
+      </div>
+
+      <div class="spec" id="spec" aria-hidden="true"></div>
+      <div class="axis" aria-hidden="true"><span>380 nm</span><span>Each section is an emission line</span><span>780 nm</span></div>
+
+      <ul class="secs" id="secs">
+        <li data-nm="434.8"><a href="https://benedu-insight.github.io/#philosophy"><span class="nm">434.8</span><span class="sname">Philosophy</span><span class="anchor">#philosophy</span></a></li>
+        <li data-nm="486.1"><a href="https://benedu-insight.github.io/#strengths"><span class="nm">486.1</span><span class="sname">Specialties</span><span class="anchor">#strengths</span></a></li>
+        <li data-nm="519.8"><a href="https://benedu-insight.github.io/#curriculum"><span class="nm">519.8</span><span class="sname">Curriculum</span><span class="anchor">#curriculum</span></a></li>
+        <li data-nm="557.7"><a href="https://benedu-insight.github.io/#sims"><span class="nm">557.7</span><span class="sname">Simulators</span><span class="anchor">#sims</span></a></li>
+        <li data-nm="587.6"><a href="https://benedu-insight.github.io/#method"><span class="nm">587.6</span><span class="sname">Method</span><span class="anchor">#method</span></a></li>
+        <li data-nm="656.3"><a href="https://benedu-insight.github.io/#instructor"><span class="nm">656.3</span><span class="sname">Instructor</span><span class="anchor">#instructor</span></a></li>
+        <li data-nm="777.2" class="ir"><a href="https://benedu-insight.github.io/#contact"><span class="nm">777.2</span><span class="sname">Inquire</span><span class="anchor">#contact</span></a></li>
+      </ul>
+
+      <p class="note coral"><b>One inbox.</b> Course inquiries from every page end up in the form at <span class="mono">#contact</span> on the homepage.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="h-portal">
+      <div class="ph">
+        <a class="ttl" href="https://benedu-insight.github.io/bi_online_lecture_portal/"><h3 id="h-portal">Online Lecture Portal</h3></a>
+        <span class="url">/bi_online_lecture_portal/</span>
+      </div>
+
+      <ul class="tree">
+        <li>
+          <a class="node" href="https://benedu-insight.github.io/bi_online_lecture_portal/basic_course/basic_course.html">
+            <span class="nt"><strong>Basic Course</strong><span class="kind">Page · members</span></span>
+            <span class="url">/basic_course/</span>
+          </a>
+          <div class="groups">
+            <div class="grp"><strong>Plasma Process</strong><span>6 classes · atom → plasma</span></div>
+            <div class="grp"><strong>RF Energy Delivery</strong><span>5 classes · power → match</span></div>
+          </div>
+        </li>
+        <li>
+          <a class="node app" href="https://benedu-insight.github.io/arc/">
+            <span class="nt"><strong>ARC</strong><span class="kind">Simulator</span></span>
+            <p class="desc">Turns the theory into numbers.</p>
+            <span class="url">/arc/</span>
+          </a>
+        </li>
+        <li>
+          <a class="node app" href="https://benedu-insight.github.io/prism/">
+            <span class="nt"><strong>PRISM</strong><span class="kind">Simulator</span></span>
+            <p class="desc">RF Matcher simulator.</p>
+            <span class="url">/prism/</span>
+          </a>
+        </li>
+        <li>
+          <a class="node" href="https://benedu-insight.github.io/bi_online_lecture_portal/study-materials.html">
+            <span class="nt"><strong>Study Guide</strong><span class="kind">Page</span></span>
+            <span class="url">/study-materials.html</span>
+          </a>
+        </li>
+      </ul>
+
+      <p class="note"><b>Class-01 and Class-02</b> don’t have their own pages yet. Their links open the portal’s front page.</p>
+    </section>
+  </div>
+
+  <div class="legend">
+    <span><i class="sw home"></i>Homepage (root)</span>
+    <span><i class="sw"></i>Page</span>
+    <span><i class="sw app"></i>Interactive simulator, own path</span>
+    <span><i class="sw grp"></i>Class group inside a page</span>
+    <span><i class="sw ln"></i>Homepage section, coloured by its emission line</span>
+  </div>
+  <p class="foot">Every box is a link.</p>
+</main>
+<script>
+  // Same wavelength → colour mapping as BI.nmRGB in assets/js/core.js
+  function nmRGB(nm) {
+    var r = 0, g = 0, b = 0;
+    if (nm < 440) { r = -(nm - 440) / 60; b = 1; }
+    else if (nm < 490) { g = (nm - 440) / 50; b = 1; }
+    else if (nm < 510) { g = 1; b = -(nm - 510) / 20; }
+    else if (nm < 580) { r = (nm - 510) / 70; g = 1; }
+    else if (nm < 645) { r = 1; g = -(nm - 645) / 65; }
+    else { r = 1; }
+    var f = nm < 420 ? 0.35 + 0.65 * (nm - 380) / 40 : nm > 700 ? 0.42 + 0.58 * (780 - nm) / 80 : 1;
+    return 'rgb(' + [r, g, b].map(function (c) { return Math.round(255 * Math.pow(Math.max(0, c * f), 0.8) * 0.82 + 40); }).join(',') + ')';
+  }
+  var spec = document.getElementById('spec');
+  document.querySelectorAll('#secs [data-nm]').forEach(function (li) {
+    var nm = parseFloat(li.dataset.nm), c = nmRGB(nm);
+    li.style.setProperty('--c', c);
+    var t = document.createElement('i');
+    t.style.left = ((nm - 380) / 400 * 100) + '%';
+    t.style.setProperty('--c', c);
+    if (li.classList.contains('ir')) t.className = 'ir';
+    spec.appendChild(t);
+  });
+</script>
+</body>
+</html>

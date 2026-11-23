@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novion Ops · 출하 현황</title>
+<link rel="icon" href="assets/novion_symbol.svg">
+<link rel="stylesheet" href="novion.css">
+</head>
+<body>
+<div class="app">
+  <aside class="app-side" aria-label="메뉴">
+    <div class="brand"><img src="assets/novion_symbol.svg" alt="">Novion Ops</div>
+    <a href="#">생산 진척</a>
+    <a class="on" href="#">출하 현황</a>
+    <a href="#">부적합 집계</a>
+    <a href="#">CM 발주</a>
+    <div class="grp">사내</div>
+    <a href="#">설정</a>
+  </aside>
+  <div>
+    <div class="app-top"><input class="input" style="width:280px" placeholder="PO 또는 모델 검색" aria-label="검색"><span class="who">생산관리팀 · 사내 전용</span></div>
+    <main class="app-body">
+      <div class="page-head">
+        <div><div class="eyebrow">Shipping · 2026년 11월</div><h1 class="display-lg" style="margin-top:6px">출하 현황</h1></div>
+        <div style="display:flex;gap:8px"><a class="btn btn-ghost" href="#">엑셀로 내려받기</a><a class="btn btn-primary" href="#">출하 등록</a></div>
+      </div>
+      <div class="grid-4">
+        <div class="card stat"><div class="label">이번 달 출하</div><div class="value">128<small>대</small></div><span class="badge success">+12%</span></div>
+        <div class="card stat"><div class="label">출하 대기</div><div class="value">22<small>대</small></div><span class="badge warning">7일 안</span></div>
+        <div class="card stat"><div class="label">지연</div><div class="value">4<small>건</small></div><span class="badge danger">평균 3일</span></div>
+        <div class="card stat"><div class="label">CM 입고 (HKT)</div><div class="value">36<small>대</small></div><span class="badge success">일정 내</span></div>
+      </div>
+      <div class="chips" role="group" aria-label="필터"><button class="chip on" type="button">전체</button><button class="chip" type="button">출하 대기</button><button class="chip" type="button">지연</button><button class="chip" type="button">NPG</button><button class="chip" type="button">NMD</button></div>
+      <div class="card" style="padding:8px 8px 4px">
+        <div class="table-wrap"><table class="table compact">
+          <tr><th>PO</th><th>고객</th><th>모델</th><th class="num">수량</th><th>출하 예정</th><th>생산</th><th>상태</th></tr>
+          <tr><td>PO-2611-07</td><td>Veltra Systems</td><td>NPG-2060HG</td><td class="num">6</td><td>11-18</td><td>HKT CM</td><td><span class="badge success">출하</span></td></tr>
+          <tr><td>PO-2611-09</td><td>Pyxis Semitech</td><td>NMD-1304</td><td class="num">10</td><td>11-21</td><td>본사</td><td><span class="badge warning">대기</span></td></tr>
+          <tr><td>PO-2610-22</td><td>Jinwoo Engineering</td><td>NGL-1004HD</td><td class="num">4</td><td>11-12</td><td>본사</td><td><span class="badge danger">지연 3일</span></td></tr>
+          <tr><td>PO-2611-11</td><td>Veltra Systems</td><td>NPG-2060HG</td><td class="num">2</td><td>11-25</td><td>HKT CM</td><td><span class="badge warning">대기</span></td></tr>
+          <tr><td>PO-2611-12</td><td>Semora</td><td>NMD-1304</td><td class="num">8</td><td>11-26</td><td>본사</td><td><span class="badge warning">대기</span></td></tr>
+          <tr><td>PO-2610-19</td><td>Eunsol Tech</td><td>NPG-2060HG</td><td class="num">3</td><td>11-10</td><td>HKT CM</td><td><span class="badge success">출하</span></td></tr>
+          <tr><td>PO-2610-25</td><td>Hwasan Process</td><td>NGL-1004HD</td><td class="num">6</td><td>11-14</td><td>본사</td><td><span class="badge danger">지연 1일</span></td></tr>
+          <tr><td>PO-2611-02</td><td>Taeil ES</td><td>NMD-1304</td><td class="num">5</td><td>11-08</td><td>본사</td><td><span class="badge success">출하</span></td></tr>
+        </table></div>
+      </div>
+      <p class="body-sm mute">교육용 가상 회사 · 강의 예시 화면.</p>
+    </main>
+  </div>
+</div>
+</body>
+</html>
