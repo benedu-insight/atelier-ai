@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="lang-ko">
 <head>
+<script>
+  /* language: ko default / en, or ?lang=en; shared with the Classroom page */
+  (function(){
+    var l='ko'; try{ l = localStorage.getItem('atelier_lang') || 'ko' }catch(e){}
+    var q = new URLSearchParams(location.search).get('lang'); if (q==='en' || q==='ko') l = q;
+    document.documentElement.className = 'lang-'+l; document.documentElement.lang = l;
+  })();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>benedu atelier — 제조 현장 실무자를 위한 AI 실무 과정</title>
-<meta name="description" content="중소·중견 제조기업 실무자를 위한 AI·바이브코딩 실무 과정. 영업·구매·생산·품질·경영지원에서 실제로 AI와 함께 만든 결과물을 시연으로 보여 줍니다. 총 4–5시간, 4교시 7개 강의.">
+<meta name="description" content="영업·마케팅, 제조, 품질, 기획 등 다양한 업무 일선의 경험을 바탕으로, 실제 제조 업무에서 AI와 바이브코딩으로 만든 결과물을 시연으로 보여 주는 실무 과정. 총 4–5시간, 4교시 7개 강의.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="benedu atelier — 제조 현장 실무자를 위한 AI 실무 과정">
-<meta property="og:description" content="코딩을 배우는 과정이 아니라, AI를 운전하는 법을 익히는 과정. 총 4–5시간, 4교시 7개 강의.">
+<meta property="og:description" content="바이브코딩은 엔진을 배우는 것이 아니라 운전하는 법을 익히는 것. 총 4–5시간, 4교시 7개 강의.">
 <link rel="icon" href="assets/logo/benedu_atelier_symbol.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-  /* benedu atelier DESIGN.md v2.1. Headline: KIMM Bold, text: A2Z (page-subset woff2 in assets/fonts), fallback Pretendard. */
+  /* benedu atelier DESIGN.md v2.1. Headline: KIMM Bold, text: A2Z (page-subset woff2 in assets/fonts, made by build.py), fallback Pretendard. */
   @font-face { font-family: "KIMM web"; font-weight: 700; font-display: swap; src: local("KIMM_Bold"), local("한국기계연구원_Bold"), url("assets/fonts/kimm-bold.woff2") format("woff2"); }
   @font-face { font-family: "A2Z web"; font-weight: 400; font-display: swap; src: local("에이투지체 4 Regular"), local("에이투지체-4Regular"), url("assets/fonts/a2z-4.woff2") format("woff2"); }
   @font-face { font-family: "A2Z web"; font-weight: 600; font-display: swap; src: local("A2Z 6 SemiBold"), local("에이투지체-6SemiBold"), url("assets/fonts/a2z-6.woff2") format("woff2"); }
@@ -23,24 +31,27 @@
   :root {
     --ink: #0A0A0A; --body: #3A3A3A; --muted: #6A6A6A; --on-dark: #F5F0E0;
     --canvas: #FFFAF0; --soft: #FAF5E8; --card: #F5F0E0; --strong: #EBE6D6; --dark: #0A1A1A; --hair: #E5E5E5;
-    --pink: #FF4D8B; --peach: #FFB084; --ochre: #E8B94A; --lav: #B8A4ED; --mint: #A4D4C5; --teal: #1A3A3A;
+    --pink: #FF4D8B; --peach: #FFB084; --ochre: #E8B94A; --lav: #B8A4ED; --mint: #A4D4C5; --teal: #1A3A3A; --coral: #FF6B5A;
     --f-head: "KIMM web", "A2Z web", "Pretendard Variable", Pretendard, sans-serif;
     --f-text: "A2Z web", "Pretendard Variable", Pretendard, "Malgun Gothic", sans-serif;
     --f-mono: "JetBrains Mono", ui-monospace, monospace;
     --gut: clamp(16px, 4vw, 40px);
     --sec: clamp(48px, 9vw, 96px);
+    --loop: 9s;
   }
   *, *::before, *::after { box-sizing: border-box; }
   html { background: var(--canvas); -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  body { margin: 0; background: var(--canvas); color: var(--body); font: 400 16px/1.65 var(--f-text); word-break: keep-all; overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
+  body { margin: 0; background: var(--canvas); color: var(--body); font: 400 16px/1.65 var(--f-text); overflow-wrap: break-word; -webkit-font-smoothing: antialiased; }
+  html.lang-ko body { word-break: keep-all; }
+  html.lang-ko .t-en, html.lang-en .t-ko { display: none !important; }
   h1, h2, h3, p, ul, ol, dl, dd { margin: 0; }
   ul, ol { padding: 0; list-style: none; }
   a { color: var(--ink); }
   img, svg { display: block; max-width: 100%; }
   img { height: auto; }
+  button { font-family: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 0 var(--gut); }
-  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
   h1, h2, .disp { font-family: var(--f-head); font-weight: 700; color: var(--ink); }
   h2 { font-size: clamp(30px, 4.4vw, 40px); line-height: 1.2; letter-spacing: -0.75px; }
@@ -55,18 +66,24 @@
   .btn-secondary:hover { background: var(--card); }
   .btn:active { transform: translateY(1px); }
 
+  /* Official two-line lockup, cropped to its drawn area (x 246–1368, y 135–549 of the 1613×684 canvas) */
+  .lockup { --h: 44px; display: block; position: relative; overflow: hidden; height: var(--h); width: calc(var(--h) * 1122 / 414); flex: none; }
+  .lockup img { position: absolute; height: calc(var(--h) * 684 / 414); width: auto; max-width: none; left: calc(var(--h) * -246 / 414); top: calc(var(--h) * -135 / 414); }
+
   /* Top bar */
   .top { position: sticky; top: 0; z-index: 10; background: rgba(255, 250, 240, .92); backdrop-filter: blur(8px); border-bottom: 1px solid transparent; transition: border-color .2s; }
   .top.is-scrolled { border-bottom-color: var(--hair); }
-  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
-  .top .mark { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .top .mark img { width: 40px; height: 40px; }
-  .top nav { display: flex; align-items: center; gap: 28px; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+  .top .mark { display: flex; text-decoration: none; }
+  .top nav { display: flex; align-items: center; gap: 24px; }
   .top nav a:not(.btn) { font-size: 15px; font-weight: 600; text-decoration: none; color: var(--body); }
   .top nav a:not(.btn):hover { color: var(--ink); }
   .top .btn { min-height: 40px; padding: 10px 18px; }
+  .lang { display: flex; background: var(--card); border-radius: 9999px; padding: 3px; }
+  .lang button { border: 0; background: transparent; color: var(--muted); font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 9999px; letter-spacing: .5px; }
+  .lang button.on { background: var(--ink); color: #fff; }
 
-  /* Hero: rounded art card, centered copy (same pattern as the online lecture portal) */
+  /* Hero: rounded art card, centered copy, animated work samples on both sides */
   .hero { padding: 20px 0 var(--sec); }
   .hero > .wrap { max-width: 1360px; }
   .hero-card { position: relative; overflow: hidden; border-radius: 24px; min-height: 600px; padding: 80px 24px 64px;
@@ -80,20 +97,55 @@
   .hero-card::after { content: ""; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(ellipse 40% 58% at 50% 50%, rgba(255, 250, 240, .94), rgba(255, 250, 240, .6) 62%, rgba(255, 250, 240, 0) 100%); }
   .hero-card > :not(.art) { position: relative; z-index: 1; }
-  .art { position: absolute; top: 50%; width: min(25%, 340px); height: auto; transform: translateY(-50%); }
+  .art { position: absolute; top: 50%; width: min(25%, 340px); height: auto; transform: translateY(-50%); overflow: visible; }
   .art-l { left: 1.5%; }
   .art-r { right: 1.5%; }
   .badge { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: #fff; border-radius: 9999px; padding: 7px 15px; font-size: 13px; font-weight: 700; }
   .badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); }
   .hero h1 { margin-top: 24px; font-size: clamp(36px, 4.4vw, 58px); line-height: 1.15; letter-spacing: -1.2px; }
   .hl { background: linear-gradient(transparent 60%, var(--mint) 60%); padding: 0 .06em; }
-  .hero .lead { margin-top: 22px; max-width: 30em; color: var(--body); }
+  .hero .lead { margin-top: 22px; max-width: 31em; color: var(--body); }
   .hero .acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
   .stats { display: flex; margin-top: 44px; background: rgba(255, 255, 255, .78); backdrop-filter: blur(6px); border: 1px solid var(--hair); border-radius: 16px; }
   .stats div { padding: 14px 26px; }
   .stats div + div { border-left: 1px solid var(--hair); }
   .stats dt { font-family: var(--f-head); font-weight: 700; font-size: 26px; line-height: 1.2; letter-spacing: -.5px; color: var(--ink); }
   .stats dd { font-size: 13px; color: var(--muted); }
+
+  /* Hero motion: every piece shares one loop so the two sides read as one story */
+  .art * { transform-box: fill-box; }
+  .float-a { animation: floatY 7s ease-in-out infinite; }
+  .float-b { animation: floatY 8s ease-in-out -2s infinite; }
+  .float-c { animation: floatY 6.5s ease-in-out -4s infinite; }
+  @keyframes floatY { 0%, 100% { transform: translateY(-5px); } 50% { transform: translateY(5px); } }
+  /* SPC: the line draws, points drop in, the out-of-control point pings */
+  .spc-line { stroke-dasharray: 420; animation: draw var(--loop) ease-in-out infinite; }
+  @keyframes draw { 0% { stroke-dashoffset: 420; } 35%, 88% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+  .spc-pt { opacity: 0; animation: pop var(--loop) ease-out infinite; animation-delay: calc(var(--i) * .3s); }
+  @keyframes pop { 0%, 2% { opacity: 0; transform: scale(.2); } 6%, 88% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
+  .spc-out { opacity: 0; transform-origin: center; animation: alarm var(--loop) ease-out infinite; }
+  @keyframes alarm { 0%, 30% { opacity: 0; transform: scale(.4); } 34% { opacity: 1; transform: scale(1.5); } 40%, 88% { opacity: 1; transform: scale(1); } 96%, 100% { opacity: 0; } }
+  .spc-ring { opacity: 0; transform-origin: center; animation: ring var(--loop) ease-out infinite; }
+  @keyframes ring { 0%, 34% { opacity: 0; transform: scale(1); } 36% { opacity: .7; } 50% { opacity: 0; transform: scale(3.2); } 100% { opacity: 0; } }
+  /* SOP: checks draw one by one */
+  .sop-ck { stroke-dasharray: 22; stroke-dashoffset: 22; animation: tick var(--loop) ease-out infinite; animation-delay: calc(1.2s + var(--i) * .7s); }
+  @keyframes tick { 0% { stroke-dashoffset: 22; } 6%, 80% { stroke-dashoffset: 0; } 90%, 100% { stroke-dashoffset: 22; } }
+  .sop-row { fill: rgba(255,255,255,.55); animation: rowon var(--loop) ease-out infinite; animation-delay: calc(1.2s + var(--i) * .7s); }
+  @keyframes rowon { 0% { fill: rgba(255,255,255,.55); } 6%, 80% { fill: rgba(255,255,255,.92); } 90%, 100% { fill: rgba(255,255,255,.55); } }
+  /* Quote: rows fill from the left, then the total lands */
+  .q-bar { transform-origin: left center; transform: scaleX(0); animation: fill var(--loop) ease-out infinite; animation-delay: calc(.5s + var(--i) * .45s); }
+  @keyframes fill { 0% { transform: scaleX(0); } 8%, 82% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+  .q-num { opacity: 0; animation: fadeIn var(--loop) ease-out infinite; animation-delay: calc(.8s + var(--i) * .45s); }
+  .q-total { opacity: 0; animation: fadeIn var(--loop) ease-out infinite; animation-delay: 2.6s; }
+  @keyframes fadeIn { 0% { opacity: 0; transform: translateY(4px); } 6%, 80% { opacity: 1; transform: none; } 90%, 100% { opacity: 0; } }
+  /* Website: blocks build up in order */
+  .w-blk { opacity: 0; animation: build var(--loop) ease-out infinite; animation-delay: calc(1.6s + var(--i) * .35s); }
+  @keyframes build { 0% { opacity: 0; transform: translateY(6px); } 5%, 78% { opacity: 1; transform: none; } 88%, 100% { opacity: 0; } }
+  /* Phone: a scan line sweeps the barcode, then the price shows */
+  .scan { animation: scan 2.4s ease-in-out infinite; }
+  @keyframes scan { 0%, 100% { transform: translateY(0); opacity: .9; } 50% { transform: translateY(34px); opacity: .9; } }
+  .price { animation: blinkp 2.4s steps(1) infinite; }
+  @keyframes blinkp { 0%, 45% { opacity: .35; } 50%, 100% { opacity: 1; } }
 
   /* Why */
   .band { background: var(--soft); padding: var(--sec) 0; }
@@ -104,7 +156,7 @@
   .why li { background: var(--canvas); border: 1px solid var(--hair); border-radius: 16px; padding: 28px 24px; }
   .why h3 { margin-bottom: 10px; }
   .loop { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 6px; margin-top: 16px; }
-  .loop span { font-size: 14px; font-weight: 600; color: var(--ink); background: var(--card); border-radius: 9999px; padding: 6px 12px; }
+  .loop > span { font-size: 14px; font-weight: 600; color: var(--ink); background: var(--card); border-radius: 9999px; padding: 6px 12px; }
   .loop i { font-style: normal; color: var(--muted); font-size: 14px; }
 
   /* Departments */
@@ -121,6 +173,7 @@
   .feat .num { font-family: var(--f-head); font-weight: 700; font-size: 28px; line-height: 1.25; letter-spacing: -.5px; }
   .feat h3 { color: inherit; }
   .feat p { font-size: 15px; line-height: 1.55; color: inherit; opacity: .86; margin-top: auto; }
+  .feat .chip.sm { align-self: flex-start; background: rgba(255, 255, 255, .55); }
   .feat.sales { background: var(--pink); }
   .feat.eng { background: var(--mint); }
   .feat.common { background: var(--teal); color: #fff; }
@@ -142,9 +195,8 @@
   .lect ul li + li { margin-top: 6px; }
   .lect ul li::before { content: ""; position: absolute; left: 2px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--muted); }
   .steps { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; font-size: 14px; color: var(--ink); }
-  .steps span { background: var(--canvas); border-radius: 9999px; padding: 4px 11px; font-weight: 600; }
+  .steps > span { background: var(--canvas); border-radius: 9999px; padding: 4px 11px; font-weight: 600; }
   .steps i { font-style: normal; color: var(--muted); }
-
   .cur-go { margin-top: 32px; display: flex; justify-content: center; }
 
   /* Outcomes */
@@ -161,21 +213,21 @@
   .ask .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
   .ask h2 { color: #fff; }
   .ask .lead { margin-top: 16px; color: var(--on-dark); opacity: .88; }
-  .ask .lockup-w { width: 280px; max-width: 100%; margin-bottom: 32px; }
+  .ask .lockup { --h: 92px; margin-bottom: 36px; }
   .reach { margin-top: 32px; display: grid; gap: 10px; font-size: 16px; }
   .reach a { color: var(--on-dark); text-decoration: none; border-bottom: 1px solid rgba(245, 240, 224, .35); }
   .reach a:hover { border-bottom-color: var(--on-dark); }
-  .reach span { display: inline-block; width: 56px; color: rgba(245, 240, 224, .6); font-size: 14px; }
+  .reach li > span { display: inline-block; width: 64px; color: rgba(245, 240, 224, .6); font-size: 14px; }
 
   form { background: var(--canvas); color: var(--body); border-radius: 24px; padding: clamp(24px, 4vw, 36px); }
   .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .field { display: grid; gap: 6px; }
   .field.full { grid-column: 1 / -1; }
   label, legend { font-size: 14px; font-weight: 600; color: var(--ink); }
-  label em { font-style: normal; color: var(--muted); font-weight: 400; }
+  label em, legend em { font-style: normal; color: var(--muted); font-weight: 400; }
   input[type=text], input[type=tel], input[type=email], textarea { width: 100%; font: 400 16px/1.5 var(--f-text); color: var(--ink); background: #fff; border: 1px solid #D6D1C4; border-radius: 12px; padding: 12px 14px; min-height: 48px; }
   textarea { resize: vertical; min-height: 128px; }
-  input, textarea, section { scroll-margin-top: 80px; }
+  input, textarea, section { scroll-margin-top: 88px; }
   input:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(10, 10, 10, .08); }
   fieldset { border: 0; padding: 0; margin: 0; }
   .depts-pick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
@@ -202,6 +254,7 @@
   footer a { color: var(--on-dark); }
 
   @media (max-width: 1023px) {
+    .top nav a.nav-sec { display: none; }
     .art { width: 24%; opacity: .45; }
     .why, .cases, .how { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .cases .feat.common { grid-column: 1 / -1; min-height: 0; }
@@ -209,7 +262,11 @@
     .ask .wrap { grid-template-columns: 1fr; gap: 40px; }
   }
   @media (max-width: 767px) {
+    .top .wrap { height: 64px; gap: 10px; }
+    .top .lockup { --h: 36px; }
+    .top nav { gap: 10px; }
     .top nav a:not(.btn) { display: none; }
+    .top .btn { padding: 10px 14px; font-size: 14px; }
     .hero { padding-top: 12px; }
     .hero-card { min-height: 0; padding: 150px 18px 40px; }
     .art { top: 0; transform: none; width: 190px; opacity: .55; }
@@ -223,9 +280,17 @@
     .cases .feat.common { grid-column: auto; }
     .feat { min-height: 0; padding: 28px 24px; }
     .fields { grid-template-columns: 1fr; }
-    .ask .lockup-w { width: 220px; }
+    .ask .lockup { --h: 72px; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  @media (max-width: 340px) { .top .btn { display: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+    .spc-line, .sop-ck { stroke-dashoffset: 0 !important; }
+    .spc-pt, .spc-out, .q-num, .q-total, .w-blk { opacity: 1 !important; }
+    .q-bar { transform: none !important; }
+    .spc-ring { opacity: 0 !important; }
+  }
   @media print { .top, .ask form, .acts { display: none; } .ask, footer { background: none; color: var(--body); } .ask h2 { color: var(--ink); } }
 </style>
 </head>
@@ -236,13 +301,19 @@
 
 <header class="top" id="top">
   <div class="wrap">
-    <a class="mark" href="#main" aria-label="benedu atelier 처음으로"><img src="assets/logo/benedu_atelier_symbol.svg" alt="" width="40" height="40"></a>
-    <nav aria-label="페이지 안 이동">
-      <a href="#why">과정 소개</a>
-      <a href="#curriculum">커리큘럼</a>
-      <a href="#outcomes">수강 후</a>
+    <a class="mark" href="#main" aria-label="benedu atelier">
+      <span class="lockup">
+        <img class="t-ko" src="assets/logo/benedu_atelier_logo_2line_outlined.svg" alt="benedu atelier — 기업실무활용 AI 교육" width="1613" height="684">
+        <img class="t-en" src="assets/logo/benedu_atelier_logo_2line_en_outlined.svg" alt="benedu atelier — Practical AI Training for Business" width="1613" height="684">
+      </span>
+    </a>
+    <nav aria-label="Page">
+      <a class="nav-sec" href="#why"><span class="t-ko">과정 소개</span><span class="t-en">Why</span></a>
+      <a class="nav-sec" href="#curriculum"><span class="t-ko">커리큘럼</span><span class="t-en">Curriculum</span></a>
+      <a class="nav-sec" href="#outcomes"><span class="t-ko">수강 후</span><span class="t-en">Outcomes</span></a>
       <a href="classroom/">Classroom</a>
-      <a class="btn btn-primary" href="#inquiry">교육 문의</a>
+      <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="ko">KO</button><button type="button" data-lang="en">EN</button></div>
+      <a class="btn btn-primary" href="#inquiry"><span class="t-ko">교육 문의</span><span class="t-en">Contact</span></a>
     </nav>
   </div>
 </header>
@@ -251,65 +322,90 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap">
       <div class="hero-card">
+        <!-- Left: production & quality outputs (SPC chart, SOP checklist, 8D) -->
         <svg class="art art-l" viewBox="0 0 420 520" aria-hidden="true">
           <g font-family="'A2Z web', Pretendard, sans-serif">
-            <rect x="24" y="40" width="300" height="190" rx="18" fill="#fff" stroke="#E5E5E5"/>
-            <text x="46" y="74" font-size="15" font-weight="700" fill="#0A0A0A">SPC  X-bar</text>
-            <line x1="46" y1="100" x2="300" y2="100" stroke="#FF6B5A" stroke-dasharray="5 5"/>
-            <line x1="46" y1="150" x2="300" y2="150" stroke="#B7B7B7"/>
-            <line x1="46" y1="200" x2="300" y2="200" stroke="#FF6B5A" stroke-dasharray="5 5"/>
-            <text x="304" y="94" font-size="11" fill="#6A6A6A" text-anchor="end">UCL</text>
-            <text x="304" y="216" font-size="11" fill="#6A6A6A" text-anchor="end">LCL</text>
-            <polyline points="52,152 78,138 104,160 130,144 156,170 182,130 208,148 234,122 260,156 286,140" fill="none" stroke="#0A0A0A" stroke-width="2.5" stroke-linejoin="round"/>
-            <g fill="#0A0A0A"><circle cx="52" cy="152" r="3.5"/><circle cx="78" cy="138" r="3.5"/><circle cx="104" cy="160" r="3.5"/><circle cx="130" cy="144" r="3.5"/><circle cx="156" cy="170" r="3.5"/><circle cx="182" cy="130" r="3.5"/><circle cx="208" cy="148" r="3.5"/><circle cx="260" cy="156" r="3.5"/><circle cx="286" cy="140" r="3.5"/></g>
-            <circle cx="234" cy="122" r="5" fill="#FF6B5A"/>
-            <rect x="120" y="262" width="270" height="200" rx="24" fill="#B8A4ED"/>
-            <text x="146" y="300" font-size="15" font-weight="700" fill="#0A0A0A">SOP  Step 1-4</text>
-            <g fill="rgba(255,255,255,.75)"><rect x="146" y="318" width="218" height="26" rx="8"/><rect x="146" y="352" width="218" height="26" rx="8"/><rect x="146" y="386" width="218" height="26" rx="8"/><rect x="146" y="420" width="218" height="26" rx="8"/></g>
-            <g fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M156 331l5 5 9-10"/><path d="M156 365l5 5 9-10"/><path d="M156 399l5 5 9-10"/></g>
-            <circle cx="163" cy="433" r="7" fill="none" stroke="#0A0A0A" stroke-width="2"/>
-            <g fill="#0A0A0A" opacity=".18"><rect x="184" y="327" width="120" height="8" rx="4"/><rect x="184" y="361" width="96" height="8" rx="4"/><rect x="184" y="395" width="136" height="8" rx="4"/><rect x="184" y="429" width="80" height="8" rx="4"/></g>
-            <rect x="10" y="300" width="88" height="88" rx="20" fill="#FFB084"/>
-            <text x="54" y="353" font-size="24" font-weight="700" fill="#0A0A0A" text-anchor="middle">8D</text>
+            <g class="float-a">
+              <rect x="24" y="40" width="300" height="190" rx="18" fill="#fff" stroke="#E5E5E5"/>
+              <text x="46" y="74" font-size="15" font-weight="700" fill="#0A0A0A">SPC  X-bar</text>
+              <line x1="46" y1="100" x2="300" y2="100" stroke="#FF6B5A" stroke-dasharray="5 5"/>
+              <line x1="46" y1="150" x2="300" y2="150" stroke="#B7B7B7"/>
+              <line x1="46" y1="200" x2="300" y2="200" stroke="#FF6B5A" stroke-dasharray="5 5"/>
+              <text x="304" y="94" font-size="11" fill="#6A6A6A" text-anchor="end">UCL</text>
+              <text x="304" y="216" font-size="11" fill="#6A6A6A" text-anchor="end">LCL</text>
+              <polyline class="spc-line" points="52,152 78,138 104,160 130,144 156,170 182,130 208,148 234,92 260,156 286,140" fill="none" stroke="#0A0A0A" stroke-width="2.5" stroke-linejoin="round"/>
+              <g fill="#0A0A0A">
+                <circle class="spc-pt" style="--i:0" cx="52" cy="152" r="3.5"/><circle class="spc-pt" style="--i:1" cx="78" cy="138" r="3.5"/><circle class="spc-pt" style="--i:2" cx="104" cy="160" r="3.5"/>
+                <circle class="spc-pt" style="--i:3" cx="130" cy="144" r="3.5"/><circle class="spc-pt" style="--i:4" cx="156" cy="170" r="3.5"/><circle class="spc-pt" style="--i:5" cx="182" cy="130" r="3.5"/>
+                <circle class="spc-pt" style="--i:6" cx="208" cy="148" r="3.5"/><circle class="spc-pt" style="--i:8" cx="260" cy="156" r="3.5"/><circle class="spc-pt" style="--i:9" cx="286" cy="140" r="3.5"/>
+              </g>
+              <circle class="spc-ring" cx="234" cy="92" r="6" fill="none" stroke="#FF6B5A" stroke-width="2"/>
+              <circle class="spc-out" cx="234" cy="92" r="5.5" fill="#FF6B5A"/>
+            </g>
+            <g class="float-b">
+              <rect x="120" y="262" width="270" height="200" rx="24" fill="#B8A4ED"/>
+              <text x="146" y="300" font-size="15" font-weight="700" fill="#0A0A0A">SOP  Step 1-4</text>
+              <rect class="sop-row" style="--i:0" x="146" y="318" width="218" height="26" rx="8"/><rect class="sop-row" style="--i:1" x="146" y="352" width="218" height="26" rx="8"/>
+              <rect class="sop-row" style="--i:2" x="146" y="386" width="218" height="26" rx="8"/><rect class="sop-row" style="--i:3" x="146" y="420" width="218" height="26" rx="8"/>
+              <g fill="none" stroke="#0A0A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="163" cy="331" r="7" opacity=".35"/><circle cx="163" cy="365" r="7" opacity=".35"/><circle cx="163" cy="399" r="7" opacity=".35"/><circle cx="163" cy="433" r="7" opacity=".35"/>
+                <path class="sop-ck" style="--i:0" d="M158 331l4 4 7-8"/><path class="sop-ck" style="--i:1" d="M158 365l4 4 7-8"/>
+                <path class="sop-ck" style="--i:2" d="M158 399l4 4 7-8"/><path class="sop-ck" style="--i:3" d="M158 433l4 4 7-8"/>
+              </g>
+              <g fill="#0A0A0A" opacity=".18"><rect x="184" y="327" width="120" height="8" rx="4"/><rect x="184" y="361" width="96" height="8" rx="4"/><rect x="184" y="395" width="136" height="8" rx="4"/><rect x="184" y="429" width="80" height="8" rx="4"/></g>
+            </g>
+            <g class="float-c">
+              <rect x="10" y="300" width="88" height="88" rx="20" fill="#FFB084"/>
+              <text x="54" y="353" font-size="24" font-weight="700" fill="#0A0A0A" text-anchor="middle">8D</text>
+            </g>
           </g>
         </svg>
+        <!-- Right: sales & personal outputs (quote, company website, checkout app) -->
         <svg class="art art-r" viewBox="0 0 420 520" aria-hidden="true">
           <g font-family="'A2Z web', Pretendard, sans-serif">
-            <rect x="90" y="30" width="300" height="214" rx="24" fill="#FF4D8B"/>
-            <text x="116" y="68" font-size="15" font-weight="700" fill="#0A0A0A">QUOTE  Q-2026</text>
-            <g fill="rgba(255,255,255,.6)"><rect x="116" y="86" width="248" height="24" rx="7"/><rect x="116" y="118" width="248" height="24" rx="7"/><rect x="116" y="150" width="248" height="24" rx="7"/></g>
-            <g fill="#0A0A0A" opacity=".22"><rect x="126" y="94" width="110" height="8" rx="4"/><rect x="126" y="126" width="80" height="8" rx="4"/><rect x="126" y="158" width="126" height="8" rx="4"/></g>
-            <g font-size="12" fill="#0A0A0A" text-anchor="end"><text x="354" y="103">1,240</text><text x="354" y="135">860</text><text x="354" y="167">2,310</text></g>
-            <line x1="116" y1="194" x2="364" y2="194" stroke="#0A0A0A" stroke-width="1.5"/>
-            <text x="116" y="222" font-size="13" font-weight="700" fill="#0A0A0A">TOTAL</text>
-            <text x="364" y="222" font-size="16" font-weight="700" fill="#0A0A0A" text-anchor="end">4,410</text>
-            <rect x="20" y="276" width="290" height="200" rx="18" fill="#fff" stroke="#E5E5E5"/>
-            <path d="M38 276h254a18 18 0 0 1 18 18v16H20v-16a18 18 0 0 1 18-18z" fill="#F5F0E0"/>
-            <g fill="#D6D1C4"><circle cx="42" cy="293" r="5"/><circle cx="58" cy="293" r="5"/><circle cx="74" cy="293" r="5"/></g>
-            <rect x="42" y="328" width="150" height="16" rx="5" fill="#0A0A0A"/>
-            <rect x="42" y="352" width="200" height="8" rx="4" fill="#0A0A0A" opacity=".18"/>
-            <rect x="42" y="366" width="170" height="8" rx="4" fill="#0A0A0A" opacity=".18"/>
-            <rect x="42" y="388" width="72" height="26" rx="13" fill="#0A0A0A"/>
-            <rect x="42" y="428" width="76" height="30" rx="10" fill="#A4D4C5"/><rect x="126" y="428" width="76" height="30" rx="10" fill="#E8B94A"/><rect x="210" y="428" width="76" height="30" rx="10" fill="#1A3A3A"/>
-            <rect x="300" y="250" width="104" height="196" rx="20" fill="#0A1A1A"/>
-            <rect x="310" y="268" width="84" height="160" rx="10" fill="#FFFAF0"/>
-            <g fill="#0A0A0A"><rect x="322" y="284" width="3" height="34"/><rect x="328" y="284" width="2" height="34"/><rect x="333" y="284" width="4" height="34"/><rect x="340" y="284" width="2" height="34"/><rect x="345" y="284" width="3" height="34"/><rect x="351" y="284" width="2" height="34"/><rect x="356" y="284" width="4" height="34"/><rect x="363" y="284" width="2" height="34"/><rect x="368" y="284" width="3" height="34"/><rect x="374" y="284" width="2" height="34"/></g>
-            <g fill="#0A0A0A" opacity=".18"><rect x="322" y="334" width="60" height="7" rx="3.5"/><rect x="322" y="350" width="44" height="7" rx="3.5"/><rect x="322" y="366" width="52" height="7" rx="3.5"/></g>
-            <text x="382" y="410" font-size="15" font-weight="700" fill="#0A0A0A" text-anchor="end">12,500</text>
+            <g class="float-b">
+              <rect x="90" y="30" width="300" height="214" rx="24" fill="#FF4D8B"/>
+              <text x="116" y="68" font-size="15" font-weight="700" fill="#0A0A0A">QUOTE  Q-2026</text>
+              <g fill="rgba(255,255,255,.35)"><rect x="116" y="86" width="248" height="24" rx="7"/><rect x="116" y="118" width="248" height="24" rx="7"/><rect x="116" y="150" width="248" height="24" rx="7"/></g>
+              <g fill="rgba(255,255,255,.7)"><rect class="q-bar" style="--i:0" x="116" y="86" width="248" height="24" rx="7"/><rect class="q-bar" style="--i:1" x="116" y="118" width="248" height="24" rx="7"/><rect class="q-bar" style="--i:2" x="116" y="150" width="248" height="24" rx="7"/></g>
+              <g fill="#0A0A0A" opacity=".22"><rect x="126" y="94" width="110" height="8" rx="4"/><rect x="126" y="126" width="80" height="8" rx="4"/><rect x="126" y="158" width="126" height="8" rx="4"/></g>
+              <g font-size="12" fill="#0A0A0A" text-anchor="end"><text class="q-num" style="--i:0" x="354" y="103">1,240</text><text class="q-num" style="--i:1" x="354" y="135">860</text><text class="q-num" style="--i:2" x="354" y="167">2,310</text></g>
+              <line x1="116" y1="194" x2="364" y2="194" stroke="#0A0A0A" stroke-width="1.5"/>
+              <text x="116" y="222" font-size="13" font-weight="700" fill="#0A0A0A">TOTAL</text>
+              <text class="q-total" x="364" y="222" font-size="16" font-weight="700" fill="#0A0A0A" text-anchor="end">4,410</text>
+            </g>
+            <g class="float-a">
+              <rect x="20" y="276" width="290" height="200" rx="18" fill="#fff" stroke="#E5E5E5"/>
+              <path d="M38 276h254a18 18 0 0 1 18 18v16H20v-16a18 18 0 0 1 18-18z" fill="#F5F0E0"/>
+              <g fill="#D6D1C4"><circle cx="42" cy="293" r="5"/><circle cx="58" cy="293" r="5"/><circle cx="74" cy="293" r="5"/></g>
+              <rect class="w-blk" style="--i:0" x="42" y="328" width="150" height="16" rx="5" fill="#0A0A0A"/>
+              <rect class="w-blk" style="--i:1" x="42" y="352" width="200" height="8" rx="4" fill="#0A0A0A" opacity=".18"/>
+              <rect class="w-blk" style="--i:2" x="42" y="366" width="170" height="8" rx="4" fill="#0A0A0A" opacity=".18"/>
+              <rect class="w-blk" style="--i:3" x="42" y="388" width="72" height="26" rx="13" fill="#0A0A0A"/>
+              <rect class="w-blk" style="--i:4" x="42" y="428" width="76" height="30" rx="10" fill="#A4D4C5"/><rect class="w-blk" style="--i:5" x="126" y="428" width="76" height="30" rx="10" fill="#E8B94A"/><rect class="w-blk" style="--i:6" x="210" y="428" width="76" height="30" rx="10" fill="#1A3A3A"/>
+            </g>
+            <g class="float-c">
+              <rect x="300" y="250" width="104" height="196" rx="20" fill="#0A1A1A"/>
+              <rect x="310" y="268" width="84" height="160" rx="10" fill="#FFFAF0"/>
+              <g fill="#0A0A0A"><rect x="322" y="284" width="3" height="34"/><rect x="328" y="284" width="2" height="34"/><rect x="333" y="284" width="4" height="34"/><rect x="340" y="284" width="2" height="34"/><rect x="345" y="284" width="3" height="34"/><rect x="351" y="284" width="2" height="34"/><rect x="356" y="284" width="4" height="34"/><rect x="363" y="284" width="2" height="34"/><rect x="368" y="284" width="3" height="34"/><rect x="374" y="284" width="2" height="34"/></g>
+              <rect class="scan" x="316" y="284" width="66" height="2" rx="1" fill="#FF6B5A"/>
+              <g fill="#0A0A0A" opacity=".18"><rect x="322" y="334" width="60" height="7" rx="3.5"/><rect x="322" y="350" width="44" height="7" rx="3.5"/><rect x="322" y="366" width="52" height="7" rx="3.5"/></g>
+              <text class="price" x="382" y="410" font-size="15" font-weight="700" fill="#0A0A0A" text-anchor="end">12,500</text>
+            </g>
           </g>
         </svg>
-        <span class="badge"><i></i>기업실무활용 AI 교육</span>
-        <h1 id="hero-title">코딩이 아니라,<br><span class="hl">운전</span>하는 법을 익힙니다</h1>
-        <p class="lead">제조 현장에서 일해 온 강사가 제조 현장 실무자에게, 실제 업무에서 AI와 바이브코딩으로 만든 결과물을 직접 보여 드립니다.</p>
+        <span class="badge"><i></i><span class="t-ko">기업실무활용 AI 교육</span><span class="t-en">Practical AI Training for Business</span></span>
+        <h1 id="hero-title"><span class="t-ko">코딩이 아니라,<br><span class="hl">운전</span>하는 법을 익힙니다</span><span class="t-en">Don't learn the engine.<br>Learn to <span class="hl">drive</span>.</span></h1>
+        <p class="lead"><span class="t-ko">영업·마케팅, 제조, 품질, 기획 등 다양한 업무 일선에서 쌓은 경험을 바탕으로, 실제 제조 업무에서 AI와 바이브코딩으로 만든 결과물을 직접 보여 드립니다.</span><span class="t-en">Drawing on hands-on work across sales and marketing, manufacturing, quality and planning, we show real results built with AI and vibe coding for everyday manufacturing work.</span></p>
         <div class="acts">
-          <a class="btn btn-primary" href="#inquiry">교육 문의하기</a>
-          <a class="btn btn-secondary" href="classroom/">Classroom 둘러보기</a>
+          <a class="btn btn-primary" href="#inquiry"><span class="t-ko">교육 문의하기</span><span class="t-en">Contact us</span></a>
+          <a class="btn btn-secondary" href="classroom/"><span class="t-ko">Classroom 둘러보기</span><span class="t-en">Visit the Classroom</span></a>
         </div>
         <dl class="stats">
-          <div><dt>4–5시간</dt><dd>총 교육 시간</dd></div>
-          <div><dt>7개</dt><dd>강의 (4교시)</dd></div>
-          <div><dt>27개</dt><dd>부서별 실무 사례</dd></div>
-          <div><dt>6개</dt><dd>대상 부서</dd></div>
+          <div><dt><span class="t-ko">4–5시간</span><span class="t-en">4–5 h</span></dt><dd><span class="t-ko">총 교육 시간</span><span class="t-en">In total</span></dd></div>
+          <div><dt><span class="t-ko">7개</span><span class="t-en">7</span></dt><dd><span class="t-ko">강의 (4교시)</span><span class="t-en">Lectures, 4 periods</span></dd></div>
+          <div><dt><span class="t-ko">27개</span><span class="t-en">27</span></dt><dd><span class="t-ko">부서별 실무 사례</span><span class="t-en">Real cases</span></dd></div>
+          <div><dt><span class="t-ko">6개</span><span class="t-en">6</span></dt><dd><span class="t-ko">대상 부서</span><span class="t-en">Departments</span></dd></div>
         </dl>
       </div>
     </div>
@@ -318,22 +414,22 @@
   <section class="band" id="why" aria-labelledby="why-title">
     <div class="wrap">
       <div class="head">
-        <p class="kicker">왜 이 과정인가</p>
-        <h2 id="why-title">현장의 일로 시작해, 현장의 결과물로 끝납니다</h2>
+        <p class="kicker"><span class="t-ko">왜 이 과정인가</span><span class="t-en">Why this course</span></p>
+        <h2 id="why-title"><span class="t-ko">현장의 일로 시작해, 현장의 결과물로 끝납니다</span><span class="t-en">It starts with real work and ends with real results</span></h2>
       </div>
       <ul class="why">
         <li>
-          <h3>제조업을 아는 AI 교육</h3>
-          <p>일반 AI 활용 교육은 제조업에서 일해 보지 않은 강사가 진행하는 경우가 많아 만족도가 낮다는 의견이 많았습니다. 이 과정은 제조 현장의 업무에서 출발합니다.</p>
+          <h3><span class="t-ko">제조업을 아는 AI 교육</span><span class="t-en">AI training that knows manufacturing</span></h3>
+          <p><span class="t-ko">일반 AI 활용 교육은 제조업에서 일해 보지 않은 강사가 진행하는 경우가 많아 만족도가 낮다는 의견이 많았습니다. 이 과정은 제조 현장의 업무에서 출발합니다.</span><span class="t-en">Many people told us general AI courses fell short because the instructors had never worked in manufacturing. This course starts from the work done on the factory floor.</span></p>
         </li>
         <li>
-          <h3>실제로 만든 결과물</h3>
-          <p>모든 사례는 영업·구매·생산·품질·경영지원 부서에서 실제로 AI와 함께 만든 결과물입니다. 강의에서는 회사와 고객 이름을 가상으로 바꿔 보여 드립니다.</p>
+          <h3><span class="t-ko">실제로 만든 결과물</span><span class="t-en">Things that were actually built</span></h3>
+          <p><span class="t-ko">모든 사례는 영업·구매·생산·품질·경영지원 부서에서 실제로 AI와 함께 만든 결과물입니다. 강의에서는 회사와 고객 이름을 가상으로 바꿔 보여 드립니다.</span><span class="t-en">Every case was really built with AI in sales, purchasing, production, quality or business support. Company and customer names are replaced in the lectures.</span></p>
         </li>
         <li>
-          <h3>배우는 것은 운전</h3>
-          <p>정비사처럼 코드를 다 알 필요는 없습니다. 무엇을 만들지 정하고, 이 순서를 몸에 익힙니다.</p>
-          <p class="loop" aria-label="요청, 코드, 확인, 수정의 순환"><span>요청</span><i>→</i><span>코드</span><i>→</i><span>확인</span><i>→</i><span>수정</span></p>
+          <h3><span class="t-ko">배우는 것은 운전</span><span class="t-en">You learn to drive</span></h3>
+          <p><span class="t-ko">정비사처럼 코드를 다 알 필요는 없습니다. 무엇을 만들지 정하고, 이 순서를 몸에 익힙니다.</span><span class="t-en">You don't need to know the code like a mechanic. Decide what to make, then make this loop a habit.</span></p>
+          <p class="loop" aria-label="Ask, code, check, fix"><span><span class="t-ko">요청</span><span class="t-en">Ask</span></span><i>→</i><span><span class="t-ko">코드</span><span class="t-en">Code</span></span><i>→</i><span><span class="t-ko">확인</span><span class="t-en">Check</span></span><i>→</i><span><span class="t-ko">수정</span><span class="t-en">Fix</span></span></p>
         </li>
       </ul>
     </div>
@@ -342,35 +438,35 @@
   <section class="sec" aria-labelledby="dept-title">
     <div class="wrap">
       <div class="head">
-        <p class="kicker">누구를 위한 과정인가</p>
-        <h2 id="dept-title">부서마다, 자기 업무의 사례를 봅니다</h2>
-        <p class="lead">중소·중견 제조기업의 여섯 부서 실무자가 대상입니다.</p>
+        <p class="kicker"><span class="t-ko">누구를 위한 과정인가</span><span class="t-en">Who it's for</span></p>
+        <h2 id="dept-title"><span class="t-ko">부서마다, 자기 업무의 사례를 봅니다</span><span class="t-en">Each department sees cases from its own work</span></h2>
+        <p class="lead"><span class="t-ko">중소·중견 제조기업의 여섯 부서 실무자가 대상입니다.</span><span class="t-en">For staff in six departments at small and mid-sized manufacturers.</span></p>
       </div>
-      <ul class="depts" aria-label="대상 부서">
-        <li class="chip" data-d="sales">영업·마케팅</li>
-        <li class="chip" data-d="buy">구매</li>
-        <li class="chip" data-d="plan">생산관리</li>
-        <li class="chip" data-d="eng">생산기술·개발</li>
-        <li class="chip" data-d="qa">품질</li>
-        <li class="chip" data-d="common">경영지원</li>
+      <ul class="depts" aria-label="Departments">
+        <li class="chip" data-d="sales"><span class="t-ko">영업·마케팅</span><span class="t-en">Sales &amp; Marketing</span></li>
+        <li class="chip" data-d="buy"><span class="t-ko">구매</span><span class="t-en">Purchasing</span></li>
+        <li class="chip" data-d="plan"><span class="t-ko">생산관리</span><span class="t-en">Production Planning</span></li>
+        <li class="chip" data-d="eng"><span class="t-ko">생산기술·개발</span><span class="t-en">Production Engineering</span></li>
+        <li class="chip" data-d="qa"><span class="t-ko">품질</span><span class="t-en">Quality</span></li>
+        <li class="chip" data-d="common"><span class="t-ko">경영지원</span><span class="t-en">Business Support</span></li>
       </ul>
       <div class="cases">
         <article class="feat sales">
-          <span class="chip sm" data-d="sales" style="align-self:flex-start;background:rgba(255,255,255,.55)">영업·마케팅</span>
-          <span class="num">16개 사례</span>
-          <h3>마케팅 · 제안 · 견적 · 대응 · 협상 · 분석</h3>
-          <p>전시회 준비, 견적 근거, 당일 미팅 자료, 경영전략회의 자료를 웹 한 장으로</p>
+          <span class="chip sm" data-d="sales"><span class="t-ko">영업·마케팅</span><span class="t-en">Sales &amp; Marketing</span></span>
+          <span class="num"><span class="t-ko">16개 사례</span><span class="t-en">16 cases</span></span>
+          <h3><span class="t-ko">마케팅 · 제안 · 견적 · 대응 · 협상 · 분석</span><span class="t-en">Marketing · Proposals · Quotes · Response · Negotiation · Analysis</span></h3>
+          <p><span class="t-ko">전시회 준비, 견적 근거, 당일 미팅 자료, 경영전략회의 자료를 웹 한 장으로</span><span class="t-en">Trade-show prep, quote evidence, same-day meeting decks and strategy reviews, each on one web page</span></p>
         </article>
         <article class="feat eng">
-          <span class="chip sm" data-d="eng" style="align-self:flex-start;background:rgba(255,255,255,.55)">생산 · 개발 · 품질</span>
-          <span class="num">11개 사례</span>
-          <h3>생산관리 · 생산기술·개발 · 품질</h3>
-          <p>생산능력 플래너, 작업절차서(SOP) 웹, 검사성적서, SPC 관리도, 8D 보고서</p>
+          <span class="chip sm" data-d="eng"><span class="t-ko">생산 · 개발 · 품질</span><span class="t-en">Production · Development · Quality</span></span>
+          <span class="num"><span class="t-ko">11개 사례</span><span class="t-en">11 cases</span></span>
+          <h3><span class="t-ko">생산관리 · 생산기술·개발 · 품질</span><span class="t-en">Planning · Engineering · Quality</span></h3>
+          <p><span class="t-ko">생산능력 플래너, 작업절차서(SOP) 웹, 검사성적서, SPC 관리도, 8D 보고서</span><span class="t-en">Capacity planner, SOP web pages, inspection reports, SPC charts, 8D reports</span></p>
         </article>
         <article class="feat common">
-          <span class="num">전 부서 공통</span>
-          <h3>한 회사처럼 보이게</h3>
-          <p>디자인 시스템 한 장으로 홈페이지 · 고객 포털 · 사내 문서 · 관리 화면을 한 회사처럼</p>
+          <span class="num"><span class="t-ko">전 부서 공통</span><span class="t-en">Every department</span></span>
+          <h3><span class="t-ko">한 회사처럼 보이게</span><span class="t-en">Look like one company</span></h3>
+          <p><span class="t-ko">디자인 시스템 한 장으로 홈페이지 · 고객 포털 · 사내 문서 · 관리 화면을 한 회사처럼</span><span class="t-en">One design system makes the website, customer portal, internal documents and admin screens look like one company</span></p>
         </article>
       </div>
     </div>
@@ -379,35 +475,35 @@
   <section class="band" id="curriculum" aria-labelledby="cur-title">
     <div class="wrap">
       <div class="head">
-        <p class="kicker">커리큘럼</p>
-        <h2 id="cur-title">4교시, 7개 강의</h2>
-        <p class="lead">무엇을 만들 수 있는지 보고, 시작하는 법을 익히고, 부서별 사례를 본 뒤, 나를 위한 첫 결과물로 마무리합니다.</p>
+        <p class="kicker"><span class="t-ko">커리큘럼</span><span class="t-en">Curriculum</span></p>
+        <h2 id="cur-title"><span class="t-ko">4교시, 7개 강의</span><span class="t-en">4 periods, 7 lectures</span></h2>
+        <p class="lead"><span class="t-ko">무엇을 만들 수 있는지 보고, 시작하는 법을 익히고, 부서별 사례를 본 뒤, 나를 위한 첫 결과물로 마무리합니다.</span><span class="t-en">See what AI can make, learn how to start, look at department cases, and finish with a first piece of your own.</span></p>
       </div>
 
       <ol class="periods">
         <li class="period">
           <div>
-            <p class="p-no">1교시</p>
-            <h3 class="p-title">AI로 무엇을 만들 수 있을까</h3>
-            <p class="p-meta">강의 1–2</p>
+            <p class="p-no"><span class="t-ko">1교시</span><span class="t-en">Period 1</span></p>
+            <h3 class="p-title"><span class="t-ko">AI로 무엇을 만들 수 있을까</span><span class="t-en">What can AI make?</span></h3>
+            <p class="p-meta"><span class="t-ko">강의 1–2</span><span class="t-en">Lectures 1–2</span></p>
           </div>
           <ol class="lects">
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 1</span><h4>AI 창작물과 바이브코딩</h4></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 1</span><span class="t-en">Lecture 1</span></span><h4><span class="t-ko">AI 창작물과 바이브코딩</span><span class="t-en">AI creations and vibe coding</span></h4></div>
               <ul>
-                <li>AI가 만드는 다섯 가지 결과물: 문서, 웹, 웹앱, 모바일 앱, PC 프로그램</li>
-                <li>겉모습은 달라도 속은 모두 코드: PPT · 홈페이지 · 엑셀을 열어 보면</li>
-                <li>웹 서비스 하나는 공장 하나: 개발의 열두 구역 지도</li>
-                <li>정비사가 아니라 운전자: 요청 → 코드 → 확인 → 수정의 순환</li>
-                <li>세 가지 자세: 도전, 모방, 일관성을 위한 기본 준비(브랜드 디자인 가이드 · 스킬)</li>
+                <li><span class="t-ko">AI가 만드는 다섯 가지 결과물: 문서, 웹, 웹앱, 모바일 앱, PC 프로그램</span><span class="t-en">Five things AI makes: documents, websites, web apps, mobile apps, desktop programs</span></li>
+                <li><span class="t-ko">겉모습은 달라도 속은 모두 코드: PPT · 홈페이지 · 엑셀을 열어 보면</span><span class="t-en">Different on the outside, all code inside: open a PPT, a website or an Excel file</span></li>
+                <li><span class="t-ko">웹 서비스 하나는 공장 하나: 개발의 열두 구역 지도</span><span class="t-en">A web service is a factory: a map of the twelve areas of development</span></li>
+                <li><span class="t-ko">정비사가 아니라 운전자: 요청 → 코드 → 확인 → 수정의 순환</span><span class="t-en">A driver, not a mechanic: the ask → code → check → fix loop</span></li>
+                <li><span class="t-ko">세 가지 자세: 도전, 모방, 일관성을 위한 기본 준비(브랜드 디자인 가이드 · 스킬)</span><span class="t-en">Three attitudes: try anything, imitate first, prepare for consistency (brand guide, skills)</span></li>
               </ul>
             </li>
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 2</span><h4>바이브코딩 시작하기</h4></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 2</span><span class="t-en">Lecture 2</span></span><h4><span class="t-ko">바이브코딩 시작하기</span><span class="t-en">Getting started with vibe coding</span></h4></div>
               <ul>
-                <li>2026년 AI 도구 지도: 무엇을 어디에 쓰나</li>
-                <li>프롬프트 한 줄이 실제 웹 주소가 되기까지: Claude Code → 데이터베이스 → GitHub → 자동 배포</li>
-                <li>예제: 설비 일상점검표를 한 줄 요청에서 데이터베이스 연결, SPC 관리도까지 키워 가기</li>
+                <li><span class="t-ko">2026년 AI 도구 지도: 무엇을 어디에 쓰나</span><span class="t-en">The 2026 AI tool map: what to use for what</span></li>
+                <li><span class="t-ko">프롬프트 한 줄이 실제 웹 주소가 되기까지: Claude Code → 데이터베이스 → GitHub → 자동 배포</span><span class="t-en">From one prompt to a live web address: Claude Code → database → GitHub → auto-deploy</span></li>
+                <li><span class="t-ko">예제: 설비 일상점검표를 한 줄 요청에서 데이터베이스 연결, SPC 관리도까지 키워 가기</span><span class="t-en">Example: grow a daily equipment checklist from one request to a database and SPC chart</span></li>
               </ul>
             </li>
           </ol>
@@ -415,57 +511,57 @@
 
         <li class="period">
           <div>
-            <p class="p-no">2교시</p>
-            <h3 class="p-title">한 회사처럼 보이게, 그리고 영업 사례</h3>
-            <p class="p-meta">강의 3–5</p>
+            <p class="p-no"><span class="t-ko">2교시</span><span class="t-en">Period 2</span></p>
+            <h3 class="p-title"><span class="t-ko">한 회사처럼 보이게, 그리고 영업 사례</span><span class="t-en">Look like one company, then sales cases</span></h3>
+            <p class="p-meta"><span class="t-ko">강의 3–5</span><span class="t-en">Lectures 3–5</span></p>
           </div>
           <ol class="lects">
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 3</span><h4>디자인 시스템을 먼저 정한다</h4></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 3</span><span class="t-en">Lecture 3</span></span><h4><span class="t-ko">디자인 시스템을 먼저 정한다</span><span class="t-en">Set the design system first</span></h4></div>
               <ul>
-                <li>부서마다 따로 만들면 로고 4가지, 글꼴 7종, 강조색 12개가 된다</li>
-                <li>디자인 시스템은 설계 기준서: 자재 규격 · 표준 부품 · 조립도 · 작업표준서</li>
-                <li>DESIGN.md 한 장으로 홈페이지 · 고객 포털 · 사내 문서 · 관리 화면을 한 회사처럼</li>
-                <li>처음 정의하는 다섯 걸음과 그대로 쓸 수 있는 요청문</li>
+                <li><span class="t-ko">부서마다 따로 만들면 로고 4가지, 글꼴 7종, 강조색 12개가 된다</span><span class="t-en">Left to each department, you end up with 4 logos, 7 fonts and 12 accent colors</span></li>
+                <li><span class="t-ko">디자인 시스템은 설계 기준서: 자재 규격 · 표준 부품 · 조립도 · 작업표준서</span><span class="t-en">A design system is a design standard: material specs, standard parts, assembly drawings, work standards</span></li>
+                <li><span class="t-ko">DESIGN.md 한 장으로 홈페이지 · 고객 포털 · 사내 문서 · 관리 화면을 한 회사처럼</span><span class="t-en">One DESIGN.md makes the website, portal, documents and admin screens look like one company</span></li>
+                <li><span class="t-ko">처음 정의하는 다섯 걸음과 그대로 쓸 수 있는 요청문</span><span class="t-en">Five steps to define it, with requests you can copy as they are</span></li>
               </ul>
             </li>
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 4</span><h4>바이브코딩으로 회사 홈페이지 만들기</h4></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 4</span><span class="t-en">Lecture 4</span></span><h4><span class="t-ko">바이브코딩으로 회사 홈페이지 만들기</span><span class="t-en">Build a company website with vibe coding</span></h4></div>
               <ul>
-                <li>한 회사의 홈페이지가 한 줄 요청에서 완성본까지 네 번 바뀌는 과정</li>
-                <li>8단계 지도: 재료 준비(목적 · 콘텐츠 · 사진 · 디자인 시스템) → 만들기 · 공개</li>
-                <li>흔한 실수 7가지와 이번 주에 할 일</li>
+                <li><span class="t-ko">한 회사의 홈페이지가 한 줄 요청에서 완성본까지 네 번 바뀌는 과정</span><span class="t-en">One company's website, through four versions from a one-line request to finished</span></li>
+                <li><span class="t-ko">8단계 지도: 재료 준비(목적 · 콘텐츠 · 사진 · 디자인 시스템) → 만들기 · 공개</span><span class="t-en">An 8-step map: gather materials (goal, content, photos, design system) → build and publish</span></li>
+                <li><span class="t-ko">흔한 실수 7가지와 이번 주에 할 일</span><span class="t-en">Seven common mistakes and what to do this week</span></li>
               </ul>
             </li>
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 5</span><h4>영업·마케팅 사례 — 영업은 AI로 무엇을 했나</h4><span class="chip sm" data-d="sales">영업·마케팅</span></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 5</span><span class="t-en">Lecture 5</span></span><h4><span class="t-ko">영업·마케팅 사례 — 영업은 AI로 무엇을 했나</span><span class="t-en">Sales &amp; marketing cases: what sales did with AI</span></h4><span class="chip sm" data-d="sales"><span class="t-ko">영업·마케팅</span><span class="t-en">Sales &amp; Marketing</span></span></div>
               <ul>
-                <li>영업 업무 지도: 마케팅 · 제안 · 견적 · 대응 · 협상 · 분석, 16개 사례</li>
-                <li>전시회 준비를 프로젝트 하나로: 초청장 · 부스 지도 · 리포트</li>
-                <li>견적 단가 뒤에 근거 붙이기, 고객 문의 당일 미팅 자료, PO 취소 대응, 적자 원인 분석</li>
-                <li>경영전략회의 자료를 웹 한 장으로</li>
+                <li><span class="t-ko">영업 업무 지도: 마케팅 · 제안 · 견적 · 대응 · 협상 · 분석, 16개 사례</span><span class="t-en">A map of sales work: marketing, proposals, quotes, response, negotiation, analysis; 16 cases</span></li>
+                <li><span class="t-ko">전시회 준비를 프로젝트 하나로: 초청장 · 부스 지도 · 리포트</span><span class="t-en">A trade show as one project: invitations, booth map, report</span></li>
+                <li><span class="t-ko">견적 단가 뒤에 근거 붙이기, 고객 문의 당일 미팅 자료, PO 취소 대응, 적자 원인 분석</span><span class="t-en">Evidence behind quoted prices, same-day meeting decks, PO cancellations, loss analysis</span></li>
+                <li><span class="t-ko">경영전략회의 자료를 웹 한 장으로</span><span class="t-en">A strategy review on one web page</span></li>
               </ul>
-              <p class="steps" aria-label="공통 네 걸음"><span>재료를 통째로 넣고</span><i>→</i><span>구조부터 묻고</span><i>→</i><span>회사 디자인을 붙이고</span><i>→</i><span>숫자와 결론은 사람이 검증</span></p>
+              <p class="steps" aria-label="Four common steps"><span><span class="t-ko">재료를 통째로 넣고</span><span class="t-en">Give it all the material</span></span><i>→</i><span><span class="t-ko">구조부터 묻고</span><span class="t-en">Ask for the structure first</span></span><i>→</i><span><span class="t-ko">회사 디자인을 붙이고</span><span class="t-en">Apply the company design</span></span><i>→</i><span><span class="t-ko">숫자와 결론은 사람이 검증</span><span class="t-en">A person checks numbers and conclusions</span></span></p>
             </li>
           </ol>
         </li>
 
         <li class="period">
           <div>
-            <p class="p-no">3교시</p>
-            <h3 class="p-title">생산 · 개발 · 품질 사례</h3>
-            <p class="p-meta">강의 6</p>
+            <p class="p-no"><span class="t-ko">3교시</span><span class="t-en">Period 3</span></p>
+            <h3 class="p-title"><span class="t-ko">생산 · 개발 · 품질 사례</span><span class="t-en">Production, development &amp; quality cases</span></h3>
+            <p class="p-meta"><span class="t-ko">강의 6</span><span class="t-en">Lecture 6</span></p>
           </div>
           <ol class="lects">
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 6</span><h4>생산·개발·품질은 AI로 무엇을 했나</h4><span class="chip sm" data-d="plan">생산관리</span><span class="chip sm" data-d="eng">생산기술·개발</span><span class="chip sm" data-d="qa">품질</span></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 6</span><span class="t-en">Lecture 6</span></span><h4><span class="t-ko">생산·개발·품질은 AI로 무엇을 했나</span><span class="t-en">What production, development and quality did with AI</span></h4><span class="chip sm" data-d="plan"><span class="t-ko">생산관리</span><span class="t-en">Planning</span></span><span class="chip sm" data-d="eng"><span class="t-ko">생산기술·개발</span><span class="t-en">Engineering</span></span><span class="chip sm" data-d="qa"><span class="t-ko">품질</span><span class="t-en">Quality</span></span></div>
               <ul>
-                <li>생산관리 · 생산기술/개발 · 품질 업무 지도와 사례 11건</li>
-                <li>생산능력 플래너, CT 다이어그램으로 원가 계산</li>
-                <li>표준 작업절차서(SOP) 웹, 표준 검사성적서</li>
-                <li>설비 개조 제안과 원인 시뮬레이션, 광학 설계, 신제품 기획, 기구 레이아웃 검토</li>
-                <li>협력사 품질 실태 조사, SPC 측정값 데이터베이스와 관리도, 8D 품질 보고서</li>
-                <li>영업 · 생산 · 품질을 하나의 업무 시스템으로 잇는 확산 방향</li>
+                <li><span class="t-ko">생산관리 · 생산기술/개발 · 품질 업무 지도와 사례 11건</span><span class="t-en">A map of planning, engineering and quality work, with 11 cases</span></li>
+                <li><span class="t-ko">생산능력 플래너, CT 다이어그램으로 원가 계산</span><span class="t-en">A capacity planner and cost calculation from cycle-time diagrams</span></li>
+                <li><span class="t-ko">표준 작업절차서(SOP) 웹, 표준 검사성적서</span><span class="t-en">Standard operating procedure (SOP) web pages and standard inspection reports</span></li>
+                <li><span class="t-ko">설비 개조 제안과 원인 시뮬레이션, 광학 설계, 신제품 기획, 기구 레이아웃 검토</span><span class="t-en">Equipment change proposals with root-cause simulation, optical design, new product planning, mechanical layout review</span></li>
+                <li><span class="t-ko">협력사 품질 실태 조사, SPC 측정값 데이터베이스와 관리도, 8D 품질 보고서</span><span class="t-en">Supplier quality audits, an SPC measurement database and charts, 8D quality reports</span></li>
+                <li><span class="t-ko">영업 · 생산 · 품질을 하나의 업무 시스템으로 잇는 확산 방향</span><span class="t-en">Where it goes next: linking sales, production and quality into one work system</span></li>
               </ul>
             </li>
           </ol>
@@ -473,44 +569,44 @@
 
         <li class="period">
           <div>
-            <p class="p-no">4교시</p>
-            <h3 class="p-title">일 말고, 나를 위한 무언가</h3>
-            <p class="p-meta">강의 7</p>
+            <p class="p-no"><span class="t-ko">4교시</span><span class="t-en">Period 4</span></p>
+            <h3 class="p-title"><span class="t-ko">일 말고, 나를 위한 무언가</span><span class="t-en">Not for work, just for you</span></h3>
+            <p class="p-meta"><span class="t-ko">강의 7</span><span class="t-en">Lecture 7</span></p>
           </div>
           <ol class="lects">
             <li class="lect">
-              <div class="l-top"><span class="l-no">강의 7</span><h4>개인 · 취미 프로젝트</h4></div>
+              <div class="l-top"><span class="l-no"><span class="t-ko">강의 7</span><span class="t-en">Lecture 7</span></span><h4><span class="t-ko">개인 · 취미 프로젝트</span><span class="t-en">Personal and hobby projects</span></h4></div>
               <ul>
-                <li>회사 일이 아니어도 된다: 강사가 자신의 삶과 취미를 위해 만든 사례</li>
-                <li>시골 구멍가게 계산 앱(바코드 스캐너로 쓰는 계산대), 드라마로 배우는 중국어 복습 앱</li>
-                <li>개인 브랜드와 디자인 시스템, 밤의 타자기, 움직이는 한 장 발표</li>
-                <li>취미도 회사 일과 같은 순서: 한 줄 목표 → 디자인 시스템 → HTML 한 파일 → 매일 쓰며 고친다</li>
-                <li>마무리: 오늘 저녁, 나를 위한 첫 파일</li>
+                <li><span class="t-ko">회사 일이 아니어도 된다: 강사가 자신의 삶과 취미를 위해 만든 사례</span><span class="t-en">It doesn't have to be work: things the instructor built for life and hobbies</span></li>
+                <li><span class="t-ko">시골 구멍가게 계산 앱(바코드 스캐너로 쓰는 계산대), 드라마로 배우는 중국어 복습 앱</span><span class="t-en">A checkout app for a village shop (a barcode-scanner till) and a Chinese review app built around TV dramas</span></li>
+                <li><span class="t-ko">개인 브랜드와 디자인 시스템, 밤의 타자기, 움직이는 한 장 발표</span><span class="t-en">A personal brand and design system, a night-time typewriter, a one-page animated talk</span></li>
+                <li><span class="t-ko">취미도 회사 일과 같은 순서: 한 줄 목표 → 디자인 시스템 → HTML 한 파일 → 매일 쓰며 고친다</span><span class="t-en">Hobbies follow the same steps: one-line goal → design system → one HTML file → use it daily and fix it</span></li>
+                <li><span class="t-ko">마무리: 오늘 저녁, 나를 위한 첫 파일</span><span class="t-en">Wrap-up: tonight, your first file for yourself</span></li>
               </ul>
             </li>
           </ol>
         </li>
       </ol>
-      <p class="cur-go"><a class="btn btn-primary" href="classroom/">Classroom에서 7개 강의 열기</a></p>
+      <p class="cur-go"><a class="btn btn-primary" href="classroom/"><span class="t-ko">Classroom에서 7개 강의 열기</span><span class="t-en">Open the 7 lectures in the Classroom</span></a></p>
     </div>
   </section>
 
   <section class="sec" id="outcomes" aria-labelledby="out-title">
     <div class="wrap">
       <div class="head">
-        <p class="kicker">수강 후</p>
-        <h2 id="out-title">수강 후 할 수 있는 것</h2>
+        <p class="kicker"><span class="t-ko">수강 후</span><span class="t-en">Outcomes</span></p>
+        <h2 id="out-title"><span class="t-ko">수강 후 할 수 있는 것</span><span class="t-en">What you'll be able to do</span></h2>
       </div>
       <ul class="outs">
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>내 업무 문서 · 보고서 · 관리표를 AI와 함께 웹 한 장이나 작은 앱으로 만듭니다</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>회사 디자인 시스템을 먼저 정해, 부서가 만든 결과물을 한 회사처럼 보이게 합니다</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>결과물을 인터넷 주소로 공개하는 과정(GitHub · 자동 배포)을 이해합니다</li>
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg>AI가 만든 숫자와 결론을 사람이 검증하는 습관을 갖습니다</li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="t-ko">내 업무 문서 · 보고서 · 관리표를 AI와 함께 웹 한 장이나 작은 앱으로 만듭니다</span><span class="t-en">Turn your documents, reports and trackers into a web page or small app with AI</span></span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="t-ko">회사 디자인 시스템을 먼저 정해, 부서가 만든 결과물을 한 회사처럼 보이게 합니다</span><span class="t-en">Set a company design system first so every department's work looks like one company</span></span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="t-ko">결과물을 인터넷 주소로 공개하는 과정(GitHub · 자동 배포)을 이해합니다</span><span class="t-en">Understand how a result goes live at a web address (GitHub, auto-deploy)</span></span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span class="t-ko">AI가 만든 숫자와 결론을 사람이 검증하는 습관을 갖습니다</span><span class="t-en">Make it a habit to check the numbers and conclusions AI produces</span></span></li>
       </ul>
       <dl class="how">
-        <div><dt>강사 시연 중심</dt><dd>수강생이 동시에 실습하지 않아도 됩니다. 웹 슬라이드를 직접 눌러 보며 따라옵니다.</dd></div>
-        <div><dt>사전 준비 없음</dt><dd>따로 준비하실 것은 없습니다. 실습을 원하는 분께는 프롬프트 시트를 드립니다.</dd></div>
-        <div><dt>실제 이름은 가상으로</dt><dd>사례는 업무 종류로 소개하고, 회사와 고객 이름은 가상으로 바꿔 보여 드립니다.</dd></div>
+        <div><dt><span class="t-ko">강사 시연 중심</span><span class="t-en">Instructor demos</span></dt><dd><span class="t-ko">수강생이 동시에 실습하지 않아도 됩니다. 웹 슬라이드를 직접 눌러 보며 따라옵니다.</span><span class="t-en">You don't have to code along. Follow by clicking through the web slides yourself.</span></dd></div>
+        <div><dt><span class="t-ko">사전 준비 없음</span><span class="t-en">No preparation</span></dt><dd><span class="t-ko">따로 준비하실 것은 없습니다. 실습을 원하는 분께는 프롬프트 시트를 드립니다.</span><span class="t-en">Nothing to prepare. If you want to try it, we give you a prompt sheet.</span></dd></div>
+        <div><dt><span class="t-ko">실제 이름은 가상으로</span><span class="t-en">Names are replaced</span></dt><dd><span class="t-ko">사례는 업무 종류로 소개하고, 회사와 고객 이름은 가상으로 바꿔 보여 드립니다.</span><span class="t-en">Cases are shown by type of work, with company and customer names replaced.</span></dd></div>
       </dl>
     </div>
   </section>
@@ -518,69 +614,72 @@
   <section class="ask" id="inquiry" aria-labelledby="ask-title">
     <div class="wrap">
       <div>
-        <img class="lockup-w" src="assets/logo/benedu_atelier_logo_2line_white_outlined.svg" alt="benedu atelier — 기업실무활용 AI 교육" width="1613" height="684" loading="lazy">
-        <h2 id="ask-title">교육 문의</h2>
-        <p class="lead">교육 대상과 인원, 희망 시기를 남겨 주시면 일정과 구성을 맞춰 회신드립니다.</p>
+        <span class="lockup">
+          <img class="t-ko" src="assets/logo/benedu_atelier_logo_2line_white_outlined.svg" alt="benedu atelier — 기업실무활용 AI 교육" width="1613" height="684" loading="lazy">
+          <img class="t-en" src="assets/logo/benedu_atelier_logo_2line_en_white_outlined.svg" alt="benedu atelier — Practical AI Training for Business" width="1613" height="684" loading="lazy">
+        </span>
+        <h2 id="ask-title"><span class="t-ko">교육 문의</span><span class="t-en">Contact</span></h2>
+        <p class="lead"><span class="t-ko">교육 대상과 인원, 희망 시기를 남겨 주시면 일정과 구성을 맞춰 회신드립니다.</span><span class="t-en">Tell us who the training is for, how many people and when, and we'll reply with a schedule and plan.</span></p>
         <ul class="reach">
-          <li><span>전화</span><a href="tel:01023763891">010-2376-3891</a></li>
-          <li><span>메일</span><a href="mailto:benedu.insight@gmail.com">benedu.insight@gmail.com</a></li>
+          <li><span><span class="t-ko">전화</span><span class="t-en">Phone</span></span><a href="tel:01023763891">010-2376-3891</a></li>
+          <li><span><span class="t-ko">메일</span><span class="t-en">Email</span></span><a href="mailto:benedu.insight@gmail.com">benedu.insight@gmail.com</a></li>
         </ul>
       </div>
       <div>
         <form id="form" action="https://formsubmit.co/benedu.insight@gmail.com" method="POST" novalidate>
-          <input type="hidden" name="_subject" value="[atelier] AI 실무 과정 문의">
+          <input type="hidden" name="_subject" id="form-subject" value="[atelier] AI 실무 과정 문의">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="과정" value="benedu atelier · 제조 현장 실무자를 위한 AI 실무 과정">
           <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <div class="fields">
             <div class="field">
-              <label for="company">회사명 <em>(필수)</em></label>
+              <label for="company"><span class="t-ko">회사명</span><span class="t-en">Company</span> <em><span class="t-ko">(필수)</span><span class="t-en">(required)</span></em></label>
               <input id="company" name="회사명" type="text" required autocomplete="organization">
-              <p class="err">회사명을 적어 주세요.</p>
+              <p class="err"><span class="t-ko">회사명을 적어 주세요.</span><span class="t-en">Please enter your company.</span></p>
             </div>
             <div class="field">
-              <label for="name">담당자 성함 <em>(필수)</em></label>
+              <label for="name"><span class="t-ko">담당자 성함</span><span class="t-en">Your name</span> <em><span class="t-ko">(필수)</span><span class="t-en">(required)</span></em></label>
               <input id="name" name="담당자" type="text" required autocomplete="name">
-              <p class="err">담당자 성함을 적어 주세요.</p>
+              <p class="err"><span class="t-ko">담당자 성함을 적어 주세요.</span><span class="t-en">Please enter your name.</span></p>
             </div>
             <div class="field">
-              <label for="phone">전화번호 <em>(필수)</em></label>
+              <label for="phone"><span class="t-ko">전화번호</span><span class="t-en">Phone</span> <em><span class="t-ko">(필수)</span><span class="t-en">(required)</span></em></label>
               <input id="phone" name="전화번호" type="tel" required autocomplete="tel" placeholder="010-0000-0000">
-              <p class="err">회신받을 전화번호를 적어 주세요.</p>
+              <p class="err"><span class="t-ko">회신받을 전화번호를 적어 주세요.</span><span class="t-en">Please enter a phone number for our reply.</span></p>
             </div>
             <div class="field">
-              <label for="email">이메일</label>
+              <label for="email"><span class="t-ko">이메일</span><span class="t-en">Email</span></label>
               <input id="email" name="email" type="email" autocomplete="email">
-              <p class="err">이메일 주소 형식을 확인해 주세요.</p>
+              <p class="err"><span class="t-ko">이메일 주소 형식을 확인해 주세요.</span><span class="t-en">Please check the email address.</span></p>
             </div>
             <fieldset class="field full">
-              <legend>수강 예정 부서 <em>(여러 개 선택 가능)</em></legend>
+              <legend><span class="t-ko">수강 예정 부서</span><span class="t-en">Departments attending</span> <em><span class="t-ko">(여러 개 선택 가능)</span><span class="t-en">(choose any)</span></em></legend>
               <div class="depts-pick">
-                <label><input type="checkbox" name="부서" value="영업·마케팅"><span class="chip" data-d="sales">영업·마케팅</span></label>
-                <label><input type="checkbox" name="부서" value="구매"><span class="chip" data-d="buy">구매</span></label>
-                <label><input type="checkbox" name="부서" value="생산관리"><span class="chip" data-d="plan">생산관리</span></label>
-                <label><input type="checkbox" name="부서" value="생산기술·개발"><span class="chip" data-d="eng">생산기술·개발</span></label>
-                <label><input type="checkbox" name="부서" value="품질"><span class="chip" data-d="qa">품질</span></label>
-                <label><input type="checkbox" name="부서" value="경영지원"><span class="chip" data-d="common">경영지원</span></label>
+                <label><input type="checkbox" name="부서" value="영업·마케팅"><span class="chip" data-d="sales"><span class="t-ko">영업·마케팅</span><span class="t-en">Sales &amp; Marketing</span></span></label>
+                <label><input type="checkbox" name="부서" value="구매"><span class="chip" data-d="buy"><span class="t-ko">구매</span><span class="t-en">Purchasing</span></span></label>
+                <label><input type="checkbox" name="부서" value="생산관리"><span class="chip" data-d="plan"><span class="t-ko">생산관리</span><span class="t-en">Production Planning</span></span></label>
+                <label><input type="checkbox" name="부서" value="생산기술·개발"><span class="chip" data-d="eng"><span class="t-ko">생산기술·개발</span><span class="t-en">Production Engineering</span></span></label>
+                <label><input type="checkbox" name="부서" value="품질"><span class="chip" data-d="qa"><span class="t-ko">품질</span><span class="t-en">Quality</span></span></label>
+                <label><input type="checkbox" name="부서" value="경영지원"><span class="chip" data-d="common"><span class="t-ko">경영지원</span><span class="t-en">Business Support</span></span></label>
               </div>
             </fieldset>
             <div class="field full">
-              <label for="msg">인원 · 희망 시기 · 요청 사항 <em>(필수)</em></label>
-              <textarea id="msg" name="요청사항" required placeholder="예) 생산·품질 부서 20명, 다음 달 중 하루"></textarea>
-              <p class="err">인원이나 희망 시기를 간단히 적어 주세요.</p>
+              <label for="msg"><span class="t-ko">인원 · 희망 시기 · 요청 사항</span><span class="t-en">Group size · Timing · Requests</span> <em><span class="t-ko">(필수)</span><span class="t-en">(required)</span></em></label>
+              <textarea id="msg" name="요청사항" required data-ph-ko="예) 생산·품질 부서 20명, 다음 달 중 하루" data-ph-en="e.g. 20 people from production and quality, one day next month" placeholder="예) 생산·품질 부서 20명, 다음 달 중 하루"></textarea>
+              <p class="err"><span class="t-ko">인원이나 희망 시기를 간단히 적어 주세요.</span><span class="t-en">Please add the group size or timing.</span></p>
             </div>
           </div>
           <div class="form-foot">
-            <label class="agree"><input type="checkbox" required>개인정보 수집·이용에 동의합니다. 입력하신 정보는 교육 문의 회신 목적으로만 사용됩니다.</label>
-            <p class="err">개인정보 수집·이용에 동의해 주세요.</p>
-            <p class="form-msg" id="form-msg" role="alert" hidden>전송에 실패했습니다. 잠시 후 다시 시도하시거나 benedu.insight@gmail.com 으로 메일 부탁드립니다.</p>
-            <button class="btn btn-primary" type="submit"><span id="btn-label">문의 보내기</span></button>
+            <label class="agree"><input type="checkbox" required><span><span class="t-ko">개인정보 수집·이용에 동의합니다. 입력하신 정보는 교육 문의 회신 목적으로만 사용됩니다.</span><span class="t-en">I agree to the collection and use of my personal information. It is used only to reply to this inquiry.</span></span></label>
+            <p class="err"><span class="t-ko">개인정보 수집·이용에 동의해 주세요.</span><span class="t-en">Please agree to continue.</span></p>
+            <p class="form-msg" id="form-msg" role="alert" hidden><span class="t-ko">전송에 실패했습니다. 잠시 후 다시 시도하시거나 benedu.insight@gmail.com 으로 메일 부탁드립니다.</span><span class="t-en">Sending failed. Please try again shortly, or email benedu.insight@gmail.com.</span></p>
+            <button class="btn btn-primary" type="submit"><span class="when-idle"><span class="t-ko">문의 보내기</span><span class="t-en">Send</span></span><span class="when-busy" hidden><span class="t-ko">보내는 중…</span><span class="t-en">Sending…</span></span></button>
           </div>
         </form>
         <div class="done" id="done" hidden tabindex="-1">
-          <h3>문의가 접수되었습니다</h3>
-          <p>남겨 주신 내용을 검토한 뒤 빠른 시일 안에 회신드리겠습니다.</p>
+          <h3><span class="t-ko">문의가 접수되었습니다</span><span class="t-en">We've received your inquiry</span></h3>
+          <p><span class="t-ko">남겨 주신 내용을 검토한 뒤 빠른 시일 안에 회신드리겠습니다.</span><span class="t-en">We'll review it and get back to you shortly.</span></p>
         </div>
       </div>
     </div>
@@ -589,13 +688,26 @@
 
 <footer>
   <div class="wrap">
-    <p>benedu atelier는 <a href="https://benedu-insight.github.io/">Benedu Insight</a>의 AI 실무 교육 브랜드입니다.</p>
+    <p><span class="t-ko">benedu atelier는 <a href="https://benedu-insight.github.io/">Benedu Insight</a>의 AI 실무 교육 브랜드입니다.</span><span class="t-en">benedu atelier is the practical AI training brand of <a href="https://benedu-insight.github.io/">Benedu Insight</a>.</span></p>
     <p>© <span id="year">2026</span> Benedu Insight</p>
   </div>
 </footer>
 
 <script>
 (function () {
+  var root = document.documentElement;
+  function lang() { return root.classList.contains('lang-en') ? 'en' : 'ko'; }
+  var subject = document.getElementById('form-subject');
+  function setLang(l) {
+    root.className = 'lang-' + l; root.lang = l;
+    document.querySelectorAll('.lang button').forEach(function (b) { b.classList.toggle('on', b.dataset.lang === l); });
+    document.querySelectorAll('[data-ph-ko]').forEach(function (el) { el.placeholder = el.getAttribute('data-ph-' + l); });
+    subject.value = l === 'en' ? '[atelier] Practical AI course inquiry' : '[atelier] AI 실무 과정 문의';
+    try { localStorage.setItem('atelier_lang', l); } catch (e) {}
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+  setLang(lang());
+
   var top = document.getElementById('top');
   var onScroll = function () { top.classList.toggle('is-scrolled', window.scrollY > 8); };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
@@ -604,8 +716,8 @@
   var form = document.getElementById('form');
   var msg = document.getElementById('form-msg');
   var done = document.getElementById('done');
-  var label = document.getElementById('btn-label');
   var btn = form.querySelector('button[type=submit]');
+  var idle = btn.querySelector('.when-idle'), busy = btn.querySelector('.when-busy');
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msg.hidden = true;
@@ -615,11 +727,11 @@
       if (bad) bad.focus();
       return;
     }
-    btn.disabled = true; form.classList.add('is-sending'); label.textContent = '보내는 중…';
+    btn.disabled = true; form.classList.add('is-sending'); idle.hidden = true; busy.hidden = false;
     fetch('https://formsubmit.co/ajax/benedu.insight@gmail.com', { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
       .then(function (res) { if (!res.ok) throw new Error('send'); form.reset(); form.hidden = true; done.hidden = false; done.focus(); })
       .catch(function () { msg.hidden = false; })
-      .then(function () { btn.disabled = false; form.classList.remove('is-sending'); label.textContent = '문의 보내기'; });
+      .then(function () { btn.disabled = false; form.classList.remove('is-sending'); idle.hidden = false; busy.hidden = true; });
   });
 })();
 </script>

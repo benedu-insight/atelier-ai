@@ -5,7 +5,7 @@
   /* theme (dark default / light) and language (ko default / en, or ?lang=en), remembered per browser */
   (function(){
     var d=document.documentElement, t='dark', l='ko';
-    try{ t = localStorage.getItem('atelier_classroom_theme') || 'dark'; l = localStorage.getItem('atelier_classroom_lang') || 'ko' }catch(e){}
+    try{ t = localStorage.getItem('atelier_classroom_theme') || 'dark'; l = localStorage.getItem('atelier_lang') || 'ko' }catch(e){}
     var q = new URLSearchParams(location.search).get('lang'); if (q==='en' || q==='ko') l = q;
     d.setAttribute('data-theme', t); d.className = 'lang-'+l; d.lang = l;
   })();
@@ -632,7 +632,7 @@ const t = (ko, en) => lang()==='en' ? en : ko;
 function setLang(l){
   root.className = 'lang-'+l; root.lang = l;
   document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on', b.dataset.lang===l));
-  try{ localStorage.setItem('atelier_classroom_lang', l) }catch(e){}
+  try{ localStorage.setItem('atelier_lang', l) }catch(e){}
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click', ()=>setLang(b.dataset.lang)));
 setLang(lang());
